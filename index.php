@@ -14,6 +14,10 @@ if (!empty($_SESSION['user_session'])) {
     }
     $error = array('type' => "none", 'message' => "");
     $client = new Client($rpc_host, $rpc_port, $rpc_user, $rpc_pass);
+	
+	$coin = new Coin($mysqli);
+	$coins = $coin->getCoins();
+	
     $admin_action = false;
     if ($admin && !empty($_GET['a'])) {
         $admin_action = $_GET['a'];
@@ -54,17 +58,16 @@ if (!empty($_SESSION['user_session'])) {
                     $json['message'] = "Tokens do not match";
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                     $json['newtoken'] = $_SESSION['token'];
-                } elseif ($_POST['amount'] > $balance) {
+                } elseif ($_POST['amount'] > $_POST['balance']) {
                     $json['message'] = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
                 } else {
-                    $withdraw_message = $client->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
+					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
+                    $withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                     $json['newtoken'] = $_SESSION['token'];
                     $json['success'] = true;
                     $json['message'] = "Withdrawal successful";
-                    $json['balance'] = $client->getBalance($user_session);
-                    $json['addressList'] = $client->getAddressList($user_session);
-                    $json['transactionList'] = $client->getTransactionList($user_session);
+					header("Location: index.php");
                 }
                 echo json_encode($json); exit;
                 break;

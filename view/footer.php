@@ -4,6 +4,6 @@
         </div>
 
     </body>
-<b><center><p>Powered by <a href="http://github.com/johnathanmartin/piWallet">piWallet</a></p>
+<b><center><p>Powered by <a href="http://github.com/johnathanmartin/piWallet">piWallet</a>, Mod by กุเอง</p>
 </center></b>
 </html>

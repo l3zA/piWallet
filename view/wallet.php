@@ -6,7 +6,47 @@ if (!empty($error))
 }
 ?>
 <p><?php echo $lang['WALLET_HELLO']; ?>, <strong><?php echo $user_session; ?></strong>!  <?php if ($admin) {?><strong><font color="red">[Admin]</font><?php }?></strong></p>
-<p><?php echo $lang['WALLET_BALANCE']; ?> <strong id="balance"><?php echo satoshitize($balance); ?></strong> <?=$short?></p>
+<table id="wallets" class="table">
+<thead>
+<tr>
+<th>currency</th>
+<th>available balance</th>
+<th>deposit address</th>
+<th>withdraw</th>
+</tr>
+</thead>
+<tbody>
+
+<?php 
+	foreach ($coins as $value) {
+		echo "<tr data-currency='$value->name'>";
+		echo "<td>$value->name</td>";
+		echo '<td>';
+		echo satoshitize($value->balance);
+		echo '</td>';
+		echo "<td class='blue'>";
+		echo "$value->address";
+		echo "</td>";
+		echo "<td class='blue'>";
+		echo "<form action='index.php' method='POST' class='clearfix'>";
+    echo "<input type='hidden' name='action' value='withdraw' />";
+    echo "<input type='hidden' name='token' value='";
+	echo $_SESSION['token'];
+	echo "'>";
+	echo "<input type='hidden' name='coin' value='$value->name' />";
+	echo "<input type='hidden' name='balance' value='$value->balance' />";
+	echo "<input type='hidden' name='port' value='$value->port' />";
+    echo "<div class='col-md-5'><input type='text' class='form-control' name='address' placeholder='Wallet Address'></div>";
+    echo "<div class='col-md-3'><input type='text' class='form-control' name='amount' placeholder='Wallet Amout'></div>";
+    echo "<div class='col-md-2'><button type='submit' class='btn btn-default'>Send</button></div>";
+echo "</form>";
+		echo "</td>";
+		echo "</tr>";
+	}
+
+?>
+</tbody>
+</table>
 
 <form action="index.php" method="POST">
 
@@ -59,78 +99,6 @@ if ($admin)
     <div class="col-md-2"><button type="submit" class="btn btn-default"><?php echo $lang['WALLET_PASSUPDATECONF']; ?></button></div>
 </form>
 <p id="pwdmsg"></p>
-<br />
-<p style="font-size:1em;"><?php echo $lang['WALLET_SUPPORTNOTE']; ?></p>
-<br />
-<p><strong><?php echo $lang['WALLET_SEND']; ?></strong></p>
-<button type="button" class="btn btn-default" id="donate">Donate to <?=$fullname?> wallet's owner!</button><br />
-<p id="donateinfo" style="display: none;">Type the amount you want to donate and click <strong>Withdraw</strong></p>
-<form action="index.php" method="POST" class="clearfix" id="withdrawform">
-    <input type="hidden" name="action" value="withdraw" />
-    <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
-    <div class="col-md-4"><input type="text" class="form-control" name="address" placeholder="<?php echo $lang['WALLET_ADDRESS']; ?>"></div>
-    <div class="col-md-2"><input type="text" class="form-control" name="amount" placeholder="<?php echo $lang['WALLET_AMOUNT']; ?>"></div>
-    <div class="col-md-2"><button type="submit" class="btn btn-default"><?php echo $lang['WALLET_SENDCONF']; ?></button></div>
-</form>
-<p id="withdrawmsg"></p>
-<br />
-<p><strong><?php echo $lang['WALLET_USERADDRESSES']; ?></strong></p>
-<form action="index.php" method="POST" id="newaddressform">
-	<input type="hidden" name="action" value="new_address" />
-	<button type="submit" class="btn btn-default"><?php echo $lang['WALLET_NEWADDRESS']; ?></button>
-</form>
-<p id="newaddressmsg"></p>
-<br />
-<table class="table table-bordered table-striped" id="alist">
-<thead>
-<tr>
-<td><?php echo $lang['WALLET_ADDRESS']; ?>:</td>
-<td><?php echo $lang['WALLET_QRCODE']; ?>:</td>
-</tr>
-</thead>
-<tbody>
-<?php
-foreach ($addressList as $address)
-{
-echo "<tr><td>".$address."</t>";?>
-<td><a href="<?php echo $server_url;?>qrgen/?address=<?php echo $address;?>">
-  <img src="<?php echo $server_url;?>qrgen/?address=<?php echo $address;?>" alt="QR Code" style="width:42px;height:42px;border:0;"></td><tr>
-<?php
-}
-?>
-</tbody>
-</table>
-<p><?php echo $lang['WALLET_LAST10']; ?></p>
-<table class="table table-bordered table-striped" id="txlist">
-<thead>
-   <tr>
-      <td nowrap><?php echo $lang['WALLET_DATE']; ?></td>
-      <td nowrap><?php echo $lang['WALLET_ADDRESS']; ?></td>
-      <td nowrap><?php echo $lang['WALLET_TYPE']; ?></td>
-      <td nowrap><?php echo $lang['WALLET_AMOUNT']; ?></td>
-      <td nowrap><?php echo $lang['WALLET_FEE']; ?></td>
-      <td nowrap><?php echo $lang['WALLET_CONFS']; ?></td>
-      <td nowrap><?php echo $lang['WALLET_INFO']; ?></td>
-   </tr>
-</thead>
-<tbody>
-   <?php
-   $bold_txxs = "";
-   foreach($transactionList as $transaction) {
-      if($transaction['category']=="send") { $tx_type = '<b style="color: #FF0000;">Sent</b>'; } else { $tx_type = '<b style="color: #01DF01;">Received</b>'; }
-      echo '<tr>
-               <td>'.date('n/j/Y h:i a',$transaction['time']).'</td>
-               <td>'.$transaction['address'].'</td>
-               <td>'.$tx_type.'</td>
-               <td>'.abs($transaction['amount']).'</td>
-               <td>'.$transaction['fee'].'</td>
-               <td>'.$transaction['confirmations'].'</td>
-               <td><a href="' . $blockchain_url,  $transaction['txid'] . '" target="_blank">Info</a></td>
-            </tr>';
-   }
-   ?>
-   </tbody>
-</table>
 <script type="text/javascript">
 var blockchain_url = "<?=$blockchain_url?>";
 $("#withdrawform input[name='action']").first().attr("name", "jsaction");

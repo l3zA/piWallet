@@ -7,15 +7,11 @@ session_start();
 header('Cache-control: private'); // IE 6 FIX
 
 define("WITHDRAWALS_ENABLED", true); //Disable withdrawals during maintenance
-
-<<<<<<< HEAD
 #include('jsonRPCClient.php');
 include('easybitcoin.php');
-=======
-include('jsonRPCClient.php');
->>>>>>> 7fbcf0bcc93d7698fd838078e523ac1ceab6ac51
 include('classes/Client.php');
 include('classes/User.php');
+include('classes/Coin.php');
 
 // function by zelles to modify the number to bitcoin format ex. 0.00120000
 function satoshitize($satoshitize) {
@@ -27,45 +23,18 @@ function satoshitrim($satoshitrim) {
    return rtrim(rtrim($satoshitrim, "0"), ".");
 }
 
-<<<<<<< HEAD
 $server_url = "wallet.l3za.me/";  // ENTER WEBSITE URL ALONG WITH A TRAILING SLASH
 
 $db_host = "localhost";
-$db_user = "user";
-$db_pass = "pass";
+$db_user = "root";
+$db_pass = "12345678";
 $db_name = "wallet";
 
-$rpc_host = "127.0.0.1";
-#$rpc_port = "16667";
-#$rpc_user = "rpc";
-#$rpc_pass = "pass";
-
-$rpc_port = "12366";
-$rpc_user = "rpc";
-$rpc_pass = "pass";
-
-$fullname = "Tincoin"; //Website Title (Do Not include 'wallet')
-$short = "TIN"; //Coin Short (BTC)
+$fullname = "Alt Coin"; //Website Title (Do Not include 'wallet')
+$short = "SPK"; //Coin Short (BTC)
 $blockchain_url = "http://blockchain.info/tx/"; //Blockchain Url
 $support = "moomanawteam@gmail.com"; //Your support eMail
-=======
-$server_url = "/";  // ENTER WEBSITE URL ALONG WITH A TRAILING SLASH
 
-$db_host = "localhost";
-$db_user = "root";
-$db_pass = "password";
-$db_name = "wallet";
-
-$rpc_host = "127.0.0.1";
-$rpc_port = "8332";
-$rpc_user = "bitcoinrpc";
-$rpc_pass = "Cp68nBkCAADKkskaKSskaDKdmSYLtLJ";
-
-$fullname = "Bitcoin"; //Website Title (Do Not include 'wallet')
-$short = "BTC"; //Coin Short (BTC)
-$blockchain_url = "http://blockchain.info/tx/"; //Blockchain Url
-$support = "support@yourwebsite.com"; //Your support eMail
->>>>>>> 7fbcf0bcc93d7698fd838078e523ac1ceab6ac51
 $hide_ids = array(1); //Hide account from admin dashboard
 $donation_address = "13jy6rHB7HMgQBoYxQQXSM7TFTZZ6CDAAZ"; //Donation Address
 
