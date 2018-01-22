@@ -181,12 +181,6 @@ if (!empty($_SESSION['user_session'])) {
                         $json = array();
                         switch ($_POST['jsaction']) {
                             case "new_address":
-                            $coin = new Coin($mysqli);
-							$coins = $coin->getCoins();
-							foreach ($coins as $value) {
-								$newAddress = new Client('localhost', $value->port, 'rpc', 'pass');
-								$newAddress->getAddress($info['username']);
-							}
 							
                             header("Location: index.php");
                             break;
