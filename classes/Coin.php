@@ -22,7 +22,7 @@ class Coin {
 			$user_session = $_SESSION['user_session'];
 			$client = new Client('localhost', $coin->port, 'rpc', 'pass');
 			$coin->balance = $client->getBalance($user_session);
-			$coin->address = $client->getAddress($user_session);
+			$coin->address = $client->getAddress($_SESSION['user_session']);
 			array_push($coins, $coin);
 		}
 		return $coins;

@@ -185,7 +185,7 @@ if (!empty($_SESSION['user_session'])) {
 							$coins = $coin->getCoins();
 							foreach ($coins as $value) {
 								$newAddress = new Client('localhost', $value->port, 'rpc', 'pass');
-								$newAddress->getnewaddress($info['username']);
+								$newAddress->getAddress($info['username']);
 							}
 							
                             header("Location: index.php");
