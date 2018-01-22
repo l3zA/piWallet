@@ -273,8 +273,6 @@ if (!empty($_SESSION['user_session'])) {
                             break;
                         }
                     }
-                    $addressList = $client->getAddressList($info['username']);
-                    $transactionList = $client->getTransactionList($info['username']);
                     unset($info['password']);
                 }
             }
