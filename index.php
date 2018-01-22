@@ -67,7 +67,7 @@ if (!empty($_SESSION['user_session'])) {
                     $json['newtoken'] = $_SESSION['token'];
                     $json['success'] = true;
                     $json['message'] = "Withdrawal successful";
-					header("Location: index.php");
+					#header("Location: index.php");
                 }
                 echo json_encode($json); exit;
                 break;
@@ -98,7 +98,7 @@ if (!empty($_SESSION['user_session'])) {
         if (!empty($_POST['action'])) {
             switch ($_POST['action']) {
                 case "new_address":
-                /*$client->getnewaddress($user_session);
+                $client->getnewaddress($user_session);
                 header("Location: index.php");
                 break;
                 case "withdraw":
@@ -116,10 +116,12 @@ if (!empty($_SESSION['user_session'])) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Withdrawal amount exceeds your wallet balance";
                 } else {
-                    $withdraw_message = $client->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
-                    $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
+					
+					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
+					$withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
+					$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                     header("Location: index.php");
-                }*/
+                }
                 break;
                 case "password":
                 $user = new User($mysqli);
@@ -193,13 +195,14 @@ if (!empty($_SESSION['user_session'])) {
                             } elseif ($_POST['amount'] > $info['balance']) {
                                 $json['message'] = "Withdrawal amount exceeds your wallet balance";
                             } else {
-                                $withdraw_message = $client->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
-                                $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
+								
+								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
+								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
+								$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
+								
                                 $json['success'] = true;
                                 $json['message'] = "Withdrawal successful";
-                                $json['balance'] = $client->getBalance($info['username']);
-                                $json['addressList'] = $client->getAddressList($info['username']);
-                                $json['transactionList'] = $client->getTransactionList($info['username']);
+                                #header("Location: index.php");
                             }
                             echo json_encode($json); exit;
                             break;
@@ -237,8 +240,9 @@ if (!empty($_SESSION['user_session'])) {
                                 $error['type'] = "withdraw";
                                 $error['message'] = "Withdrawal amount exceeds your wallet balance";
                             } else {
-                                $withdraw_message = $client->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
-                                $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
+								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
+								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
+								$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                                 header("Location: index.php?a=info&i=" . $info['id']);
                             }
                             break;
