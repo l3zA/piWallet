@@ -6,6 +6,7 @@ if (!empty($error))
 }
 ?>
 <p><?php echo $lang['WALLET_HELLO']; ?>, <strong><?php echo $user_session; ?></strong>!  <?php if ($admin) {?><strong><font color="red">[Admin]</font><?php }?></strong></p>
+<p style="color:red;">Fee 0.00001</p>
 <table id="wallets" class="table">
 <thead>
 <tr>
@@ -36,9 +37,9 @@ if (!empty($error))
 	echo "<input type='hidden' name='coin' value='$value->name' />";
 	echo "<input type='hidden' name='balance' value='$value->balance' />";
 	echo "<input type='hidden' name='port' value='$value->port' />";
-    echo "<div class='col-md-5'><input type='text' class='form-control' name='address' placeholder='Wallet Address'></div>";
-    echo "<div class='col-md-3'><input type='text' class='form-control' name='amount' placeholder='Wallet Amout'></div>";
-    echo "<div class='col-md-2'><button type='submit' class='btn btn-default'>Send</button></div>";
+    echo "<div class='col-md-5'><input type='text' class='form-control address' name='address' placeholder='Wallet Address'></div>";
+    echo "<div class='col-md-3'><input type='text' class='form-control amount' name='amount'  placeholder='Wallet Amout'></div>";
+    echo "<div class='col-md-2'><button type='submit' class='btn btn-default'>Send</button></div>Received : <span class='received'></span>";
 echo "</form>";
 		echo "</td>";
 		echo "</tr>";
@@ -100,6 +101,16 @@ if ($admin)
 </form>
 <p id="pwdmsg"></p>
 <script type="text/javascript">
+
+$(document).ready(function(){
+	
+$(".amount").on('keyup', function(){
+	var amount = $(this).val();
+	$(this).parent('div').parent('form').children('.received').text((parseFloat(amount) - 0.00001).toFixed(8));
+});
+});
+
+
 var blockchain_url = "<?=$blockchain_url?>";
 $("#withdrawform input[name='action']").first().attr("name", "jsaction");
 $("#newaddressform input[name='action']").first().attr("name", "jsaction");
