@@ -22,10 +22,10 @@ if (!empty($_SESSION['user_session'])) {
     if ($admin && !empty($_GET['a'])) {
         $admin_action = $_GET['a'];
     }
-    /*if (!$admin_action) {
-        $noresbal = $client->getBalance($user_session);
-        $resbalance = $client->getBalance($user_session) - $reserve;
-	if ($resbalance < 0) {
+    if (!$admin_action) {
+        /*$noresbal = $client->getBalance($user_session);
+        $resbalance = $client->getBalance($user_session) - $reserve;*/
+	/*if ($resbalance < 0) {
 		$balance = $noresbal; //Don't show the user a negitive balance if they have no coins with us
 	} else {
 		$balance = $resbalance;
@@ -34,7 +34,7 @@ if (!empty($_SESSION['user_session'])) {
             $json = array();
             switch ($_POST['jsaction']) {
                 case "new_address":
-                //$client->getnewaddress($user_session);
+                /*$client->getnewaddress($user_session);
                 $json['success'] = true;
                 $json['message'] = "A new address was added to your wallet";
 		$jsonbal = $client->getBalance($user_session);
@@ -44,9 +44,9 @@ if (!empty($_SESSION['user_session'])) {
 		} else {
 			$json['balance'] = $jsonbalreserve; }
 		$json['balance'] = $jsonbal;
-                //$json['addressList'] = $client->getAddressList($user_session);
-                //$json['transactionList'] = $client->getTransactionList($user_session);
-                echo json_encode($json); exit;
+                $json['addressList'] = $client->getAddressList($user_session);
+                $json['transactionList'] = $client->getTransactionList($user_session);
+                echo json_encode($json); exit;*/
                 break;
                 case "withdraw":
                 $json['success'] = false;
@@ -98,7 +98,7 @@ if (!empty($_SESSION['user_session'])) {
         if (!empty($_POST['action'])) {
             switch ($_POST['action']) {
                 case "new_address":
-                //$client->getnewaddress($user_session);
+                /*$client->getnewaddress($user_session);
                 header("Location: index.php");
                 break;
                 case "withdraw":
@@ -116,10 +116,10 @@ if (!empty($_SESSION['user_session'])) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Withdrawal amount exceeds your wallet balance";
                 } else {
-                    //$withdraw_message = $client->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
+                    $withdraw_message = $client->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                     header("Location: index.php");
-                }
+                }*/
                 break;
                 case "password":
                 $user = new User($mysqli);
@@ -164,8 +164,8 @@ if (!empty($_SESSION['user_session'])) {
                 break;
             }
         }
-        //$addressList = $client->getAddressList($user_session);
-        //$transactionList = $client->getTransactionList($user_session);
+        /*$addressList = $client->getAddressList($user_session);
+        $transactionList = $client->getTransactionList($user_session);*/
         include("view/header.php");
         include("view/wallet.php");
         include("view/footer.php");
@@ -176,19 +176,17 @@ if (!empty($_SESSION['user_session'])) {
             if (!empty($_GET['i'])) {
                 $info = $user->adminGetUserInfo($_GET['i']);
                 if (!empty($info)) {
-                    $info['balance'] = $client->getBalance($info['username']);
+                    //$info['balance'] = $client->getBalance($info['username']);
                     if (!empty($_POST['jsaction'])) {
                         $json = array();
                         switch ($_POST['jsaction']) {
                             case "new_address":
-							
-							$coin = new Coin($mysqli);
+                            $coin = new Coin($mysqli);
 							$coins = $coin->getCoins();
 							foreach ($coins as $value) {
 								$newAddress = new Client('localhost', $value->port, 'rpc', 'pass');
 								$newAddress->getnewaddress($info['username']);
 							}
-							
 							
                             header("Location: index.php");
                             break;
