@@ -113,7 +113,7 @@ if (!empty($_SESSION['user_session'])) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Tokens do not match";
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
-                } elseif ($_POST['amount'] > $balance) {
+                } elseif ($_POST['amount'] > $_POST['balance']) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Withdrawal amount exceeds your wallet balance";
                 } else {
@@ -195,7 +195,7 @@ if (!empty($_SESSION['user_session'])) {
                                 $json['message'] = "Withdrawals are temporarily disabled";
                             } elseif (empty($_POST['address']) || empty($_POST['amount']) || !is_numeric($_POST['amount'])) {
                                 $json['message'] = "You have to fill all the fields";
-                            } elseif ($_POST['amount'] > $info['balance']) {
+                            } elseif ($_POST['amount'] > $_POST['balance']) {
                                 $json['message'] = "Withdrawal amount exceeds your wallet balance";
                             } else {
 								
@@ -243,7 +243,7 @@ if (!empty($_SESSION['user_session'])) {
                             } elseif (empty($_POST['address']) || empty($_POST['amount']) || !is_numeric($_POST['amount'])) {
                                 $error['type'] = "withdraw";
                                 $error['message'] = "You have to fill all the fields";
-                            } elseif ($_POST['amount'] > $info['balance']) {
+                            } elseif ($_POST['amount'] > $_POST['balance']) {
                                 $error['type'] = "withdraw";
                                 $error['message'] = "Withdrawal amount exceeds your wallet balance";
                             } else {
