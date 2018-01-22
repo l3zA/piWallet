@@ -9,8 +9,12 @@ class Client {
 	function __construct($host, $port, $user, $pass)
 	{
 		$this->uri = "http://" . $user . ":" . $pass . "@" . $host . ":" . $port . "/";
+<<<<<<< HEAD
 		#$this->jsonrpc = new jsonRPCClient($this->uri);
 		$this->jsonrpc = new Bitcoin($user, $pass, $host, $port);
+=======
+		$this->jsonrpc = new jsonRPCClient($this->uri);
+>>>>>>> 7fbcf0bcc93d7698fd838078e523ac1ceab6ac51
 	}
 
 	function getBalance($user_session)
