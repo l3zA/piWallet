@@ -63,6 +63,8 @@ if (!empty($_SESSION['user_session'])) {
                 } else {
 					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
                     $withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
+					echo '!admin';
+					echo $withdraw_coin->getBalance($user_session);
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                     $json['newtoken'] = $_SESSION['token'];
                     $json['success'] = true;
@@ -98,7 +100,6 @@ if (!empty($_SESSION['user_session'])) {
         if (!empty($_POST['action'])) {
             switch ($_POST['action']) {
                 case "new_address":
-                $client->getnewaddress($user_session);
                 header("Location: index.php");
                 break;
                 case "withdraw":
@@ -119,6 +120,8 @@ if (!empty($_SESSION['user_session'])) {
 					
 					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
 					$withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
+					echo '!admin';
+					echo $withdraw_coin->getBalance($user_session);
 					$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                     header("Location: index.php");
                 }
@@ -198,6 +201,10 @@ if (!empty($_SESSION['user_session'])) {
 								
 								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
 								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
+								
+								echo 'admin';
+								echo $withdraw_coin->getBalance($info['username']);
+								
 								$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
 								
                                 $json['success'] = true;
@@ -242,6 +249,8 @@ if (!empty($_SESSION['user_session'])) {
                             } else {
 								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
 								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
+								echo 'admin';
+								echo $withdraw_coin->getBalance($info['username']);
 								$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                                 header("Location: index.php?a=info&i=" . $info['id']);
                             }
