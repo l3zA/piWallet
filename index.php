@@ -185,12 +185,12 @@ if (!empty($_SESSION['user_session'])) {
 							$coin = new Coin($mysqli);
 							$coins = $coin->getCoins();
 							foreach ($coins as $value) {
-								$newAddress = new Client('localhost', $_POST['port'], 'rpc', 'pass');
+								$newAddress = new Client('localhost', $value->port, 'rpc', 'pass');
 								$newAddress->getnewaddress($info['username']);
 							}
 							
-							header("Location: index.php");
-                            echo json_encode($json); exit;
+							
+                            header("Location: index.php");
                             break;
                             case "withdraw":
                             $json['success'] = false;
