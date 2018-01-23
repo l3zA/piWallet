@@ -18,36 +18,19 @@ if (!empty($_SESSION['user_session'])) {
 	$coin = new Coin($mysqli);
 	$coins = $coin->getCoins();
 	
+	if($_GET['t'] == "true" && $_GET['p'] != ""){
+		$c = new Client('localhost', $_GET['p'], 'rpc', 'pass');
+		$transactionList = $c->getTransactionList($user_session);
+	}
+	
     $admin_action = false;
     if ($admin && !empty($_GET['a'])) {
         $admin_action = $_GET['a'];
     }
     if (!$admin_action) {
-        /*$noresbal = $client->getBalance($user_session);
-        $resbalance = $client->getBalance($user_session) - $reserve;*/
-	/*if ($resbalance < 0) {
-		$balance = $noresbal; //Don't show the user a negitive balance if they have no coins with us
-	} else {
-		$balance = $resbalance;
-	}*/
-	if (!empty($_POST['jsaction'])) {
+		if (!empty($_POST['jsaction'])) {
             $json = array();
             switch ($_POST['jsaction']) {
-                case "new_address":
-                /*$client->getnewaddress($user_session);
-                $json['success'] = true;
-                $json['message'] = "A new address was added to your wallet";
-		$jsonbal = $client->getBalance($user_session);
-		$jsonbalreserve = $client->getBalance($user_session) - $reserve;
-                if ($jsonbalreserve < 0) {
-			$json['balance'] = $jsonbal; 
-		} else {
-			$json['balance'] = $jsonbalreserve; }
-		$json['balance'] = $jsonbal;
-                $json['addressList'] = $client->getAddressList($user_session);
-                $json['transactionList'] = $client->getTransactionList($user_session);
-                echo json_encode($json); exit;*/
-                break;
                 case "withdraw":
                 $json['success'] = false;
                 if (!WITHDRAWALS_ENABLED) {

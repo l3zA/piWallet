@@ -21,7 +21,7 @@ if (!empty($error))
 <?php 
 	foreach ($coins as $value) {
 		echo "<tr data-currency='$value->name'>";
-		echo "<td>$value->name</td>";
+		echo "<td><a href='?t=true&p=$value->port'>$value->name</a></td>";
 		echo '<td>';
 		echo satoshitize($value->balance);
 		echo '</td>';
@@ -52,6 +52,46 @@ echo "</form>";
 <form action="index.php" method="POST">
 
 <br />
+<div style="<?php if($_GET['t'] != "true" || $_GET['p'] == ""){ echo 'display:none;';} ?>">
+<p><?php echo $lang['WALLET_LAST10']; ?></p>
+<table class="table table-bordered table-striped" id="txlist">
+<thead>
+   <tr>
+      <td nowrap><?php echo $lang['WALLET_DATE']; ?></td>
+      <td nowrap><?php echo $lang['WALLET_ADDRESS']; ?></td>
+      <td nowrap><?php echo $lang['WALLET_TYPE']; ?></td>
+      <td nowrap><?php echo $lang['WALLET_AMOUNT']; ?></td>
+      <td nowrap><?php echo $lang['WALLET_FEE']; ?></td>
+      <td nowrap><?php echo $lang['WALLET_CONFS']; ?></td>
+      <td nowrap><?php echo $lang['WALLET_INFO']; ?></td>
+   </tr>
+</thead>
+<tbody>
+   <?php
+   if($_GET['t'] == "true" && $_GET['p'] != ""){
+		$bold_txxs = "";
+	   if($transactionList != false){
+		   foreach($transactionList as $transaction) {
+			  if($transaction['category']=="send") { $tx_type = '<b style="color: #FF0000;">Sent</b>'; } else { $tx_type = '<b style="color: #01DF01;">Received</b>'; }
+			  echo '<tr>
+					   <td>'.date('n/j/Y h:i a',$transaction['time']).'</td>
+					   <td>'.$transaction['address'].'</td>
+					   <td>'.$tx_type.'</td>
+					   <td>'.abs($transaction['amount']).'</td>
+					   <td>'.$transaction['fee'].'</td>
+					   <td>'.$transaction['confirmations'].'</td>
+					   <td><a href="' . $blockchain_url,  $transaction['txid'] . '" target="_blank">Info</a></td>
+					</tr>';
+		   }
+	   }
+   
+   }
+   ?>
+   </tbody>
+</table>
+</div>
+<br />
+
 <?php
 if ($admin)
 {
