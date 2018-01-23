@@ -303,6 +303,13 @@ if (!empty($_SESSION['user_session'])) {
                     $user->adminDeleteAccount($_GET['i']);
                     header("Location: index.php?a=home");
                     break;
+					case "addcoin":
+					$c = (object)[];
+					$c->fullName = $_GET['fullname'];
+					$c->name = $_GET['name'];
+					$c->port = $_GET['port'];
+					$msg['message'] = $coin->addCoin($c);
+                    break;
                 }
             }
             $userList = $user->adminGetUserList();

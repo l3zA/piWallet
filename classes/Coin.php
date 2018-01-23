@@ -27,6 +27,16 @@ class Coin {
 		}
 		return $coins;
 	}
+	
+	function addCoin($coin){
+		$sql = "INSERT INTO coins (fullName, name, port) VALUES ('" . $coin->fullName . "', '" . $coin->name . "', " . $coin->port . ")";
+		$result = $this->mysqli->query($sql);
+		if ($result > 0) {
+			return "Add coin successfully";
+		} else {
+			return "Error: " . $sql . "<br>" . $this->mysqli->error;
+		}
+	}
 }
 
 ?>
