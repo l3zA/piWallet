@@ -32,7 +32,7 @@ if (!empty($msg))
 		echo '</td>';
 		echo '<td>';
 		
-		if($value->name == "XLR"){
+		/*if($value->name == "XLR"){
 			// create curl resource 
 			$ch = curl_init(); 
 
@@ -48,7 +48,7 @@ if (!empty($msg))
 			// close curl resource to free up system resources 
 			curl_close($ch);  
 			echo $output;
-		}
+		}*/
 		
 		echo '</td>';
 		echo '<td>';
