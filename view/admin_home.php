@@ -78,7 +78,7 @@ if (!empty($msg))
 		
 		echo '</td>';
 		echo '<td>';
-		if(isAssoc($value->diff)){
+		/*if(isAssoc($value->diff)){
 			$numItems = count($value->diff);
 			$i = 0;
 			foreach ($value->diff as $k => $v){
@@ -90,9 +90,9 @@ if (!empty($msg))
 				}
 			}
 		}else{
-			echo $value->diff;
-		}
-		
+			
+		}*/
+		echo $value->diff;
 		echo '</td>';
 		echo "</tr>";
 	}
