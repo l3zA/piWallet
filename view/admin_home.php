@@ -73,7 +73,7 @@ if (!empty($msg))
 					echo " : ";
 					echo number_format($v,6, '.', '');
 					if(++$i != $numItems) {
-						echo ",";
+						echo ", ";
 					}
 				}
 			}else{
@@ -135,7 +135,7 @@ if (!empty($msg))
 <script>
 	$(document).ready(function(){
 		$("#btnAddCoin").on('click', function(){
-			$(this).attr('disabled', 'disabled');
+			$(this).hide();
 			if($("#fullName").val() != "" && $("#name").val() != "" && $("#port").val() != ""){
 				window.location = "?a=home&i=i&m=addcoin&fullname=" + $("#fullName").val() + "&name=" + $("#name").val() + "&port=" + $("#port").val() + "&blockapiurl=" + $("#blockapiurl").val();
 			}else{

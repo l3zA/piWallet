@@ -29,6 +29,12 @@ class Coin {
 	}
 	
 	function addCoin($coin){
+		$check = $this->mysqli->query("SELECT * FROM coins where port = " . $coin->port);
+		$row = mysqli_fetch_row($check);
+		$num = $row[0];
+		if($num > 0){
+			return "Port Dupplicate!"; 
+		}
 		$sql = "INSERT INTO coins (fullName, name, port, lastestBlockAPI) VALUES ('" . $coin->fullName . "', '" . $coin->name . "', " . $coin->port . ",'" . $coin->blockapiurl . "')";
 		$result = $this->mysqli->query($sql);
 		if ($result > 0) {
