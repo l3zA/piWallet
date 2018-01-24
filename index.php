@@ -296,6 +296,7 @@ if (!empty($_SESSION['user_session'])) {
                 }
             }
             $userList = $user->adminGetUserList();
+			$coins = $coin->getAllBalance();
             include("view/header.php");
             include("view/admin_home.php");
             include("view/footer.php");

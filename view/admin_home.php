@@ -9,7 +9,31 @@ if (!empty($msg))
     echo "<p style='font-weight: bold; color: green;'>" . $msg['message']; "</p>";
 }
 ?>
-<br /><br />
+<p><?php echo $lang['WALLET_HELLO']; ?>, <strong><?php echo $user_session; ?></strong>!  <?php if ($admin) {?><strong><font color="red">[Admin]</font><?php }?></strong></p>
+<p style="color:red;">Fee 0.00001</p>
+<table id="wallets" class="table">
+<thead>
+<tr>
+<th>Coin</th>
+<th>Balance</th>
+</tr>
+</thead>
+<tbody>
+
+<?php 
+	foreach ($coins as $value) {
+		echo "<tr data-currency='$value->name'>";
+		echo "<td>$value->name</td>";
+		echo '<td>';
+		echo satoshitize($value->balance);
+		echo '</td>';
+		echo "</tr>";
+	}
+
+?>
+</tbody>
+</table>
+<br />
 <a href="?" class="btn btn-default">Go back to wallet</a>
 <br /><br />
 <p><strong>Add Coin</strong></p>

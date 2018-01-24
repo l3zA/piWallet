@@ -37,6 +37,21 @@ class Coin {
 			return "Error: " . $sql . "<br>" . $this->mysqli->error;
 		}
 	}
+	
+	function getAllBalance(){
+		$result = $this->mysqli->query("SELECT * FROM coins");
+		$coins = array();
+		while ($obj = $result->fetch_object()) {
+			$coin = (object)[];
+			$coin->fullName = $obj->fullName;
+			$coin->name = $obj->name;
+			$coin->port = $obj->port;
+			$client = new Client('localhost', $coin->port, 'rpc', 'pass');
+			$coin->balance = $client->getBalance(null);
+			array_push($coins, $coin);
+		}
+		return $coins;
+	}
 }
 
 ?>
