@@ -29,7 +29,7 @@ class Coin {
 	}
 	
 	function addCoin($coin){
-		$sql = "INSERT INTO coins (fullName, name, port) VALUES ('" . $coin->fullName . "', '" . $coin->name . "', " . $coin->port . ")";
+		$sql = "INSERT INTO coins (fullName, name, port, lastestBlockAPI) VALUES ('" . $coin->fullName . "', '" . $coin->name . "', " . $coin->port . ",'" . $coin->blockapiurl . "')";
 		$result = $this->mysqli->query($sql);
 		if ($result > 0) {
 			return "Add coin successfully";
@@ -48,6 +48,7 @@ class Coin {
 			$coin->port = $obj->port;
 			$client = new Client('localhost', $coin->port, 'rpc', 'pass');
 			$coin->balance = $client->getBalance(null);
+			$coin->lastestBlockAPI = $obj->lastestBlockAPI;
 			$coin->syncedBlock = $client->getSyncedBlock();
 			$coin->diff = $client->getDiff();
 			array_push($coins, $coin);

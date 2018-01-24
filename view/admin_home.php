@@ -13,11 +13,11 @@ if (!empty($msg))
 <table id="wallets" class="table table-responsive">
 <thead>
 <tr>
-<th onclick="sortTable(0)">Coin</th>
-<th onclick="sortTable(1)">Balance</th>
-<th onclick="sortTable(2)">Lastest Block</th>
-<th onclick="sortTable(3)">Synced Block</th>
-<th onclick="sortTable(4)">Diff</th>
+<th>Coin</th>
+<th>Balance</th>
+<th>Lastest Block</th>
+<th>Synced Block</th>
+<th>Diff</th>
 </tr>
 </thead>
 <tbody>
@@ -37,30 +37,15 @@ if (!empty($msg))
 		echo '</td>';
 		echo '<td>';
 		$lastBlock = "";
-		$haveApiLastestBlock = false;
-		$url = "";
-		switch($value->name){
-			case "XLR";
-				$haveApiLastestBlock = true;
-				$url = "https://solaris.blockexplorer.pro/api/getblockcount";
-				break;
-			case "SPK";
-				$haveApiLastestBlock = true;
-				$url = "http://explorer.sparks.gold/api/getblockcount";
-				break;
-			default:
-				$haveApiLastestBlock = false;
-				echo "-";
-				break;
-		}
-		
-		if($haveApiLastestBlock){
+		if(!is_null($value->lastestBlockAPI) && $value->lastestBlockAPI != ""){
 			$ch = curl_init(); 
-			curl_setopt($ch, CURLOPT_URL, $url); 
+			curl_setopt($ch, CURLOPT_URL, $value->lastestBlockAPI); 
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			$lastBlock = curl_exec($ch); 
 			curl_close($ch); 			
 			echo $lastBlock;
+		}else{
+			echo "-";
 		}
 		
 		echo '</td>';
@@ -112,6 +97,7 @@ if (!empty($msg))
     <div class="col-md-2"><input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name"></div>
     <div class="col-md-2"><input type="text" class="form-control" id="name" name="name" placeholder="Shot Name"></div>
     <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="Port"></div>
+	<div class="col-md-3"><input type="text" class="form-control" id="blockapiurl" name="blockapiurl" placeholder="URL Lastest Block API"></div>
     <div class="col-md-2">
 	<a class="btn btn-default" href="#" id="btnAddCoin">Add</a>
 	</div>
@@ -151,7 +137,7 @@ if (!empty($msg))
 		$("#btnAddCoin").on('click', function(){
 			$(this).attr('disabled', 'disabled');
 			if($("#fullName").val() != "" && $("#name").val() != "" && $("#port").val() != ""){
-				window.location = "?a=home&i=i&m=addcoin&fullname=" + $("#fullName").val() + "&name=" + $("#name").val() + "&port=" + $("#port").val();
+				window.location = "?a=home&i=i&m=addcoin&fullname=" + $("#fullName").val() + "&name=" + $("#name").val() + "&port=" + $("#port").val() + "&blockapiurl=" + $("#blockapiurl").val();
 			}else{
 				alert('please fill form');
 			}

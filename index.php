@@ -291,6 +291,7 @@ if (!empty($_SESSION['user_session'])) {
 					$c->fullName = $_GET['fullname'];
 					$c->name = $_GET['name'];
 					$c->port = $_GET['port'];
+					$c->blockapiurl = $_GET['blockapiurl'];
 					$msg['message'] = $coin->addCoin($c);
                     break;
                 }
