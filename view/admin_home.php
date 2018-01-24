@@ -15,8 +15,8 @@ if (!empty($msg))
 <p><strong>Add Coin</strong></p>
 <form action="index.php?a=home" method="POST" class="clearfix" id="coinform">
     <div class="col-md-2"><input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name"></div>
-    <div class="col-md-2"><input type="text" class="form-control" id="name" name="name" placeholder="name"></div>
-    <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="port"></div>
+    <div class="col-md-2"><input type="text" class="form-control" id="name" name="name" placeholder="Shot Name"></div>
+    <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="Port"></div>
     <div class="col-md-2">
 	<a class="btn btn-default" href="#" id="btnAddCoin">Add</a>
 	</div>

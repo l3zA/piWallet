@@ -10,10 +10,10 @@ if (!empty($error))
 <table id="wallets" class="table">
 <thead>
 <tr>
-<th>currency</th>
-<th>available balance</th>
-<th>deposit address</th>
-<th>withdraw</th>
+<th>Coin</th>
+<th>Balance</th>
+<th>Deposit address</th>
+<th>Withdraw</th>
 </tr>
 </thead>
 <tbody>
