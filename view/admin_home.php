@@ -25,13 +25,13 @@ if (!empty($msg))
 
 <?php 
 	foreach ($coins as $value) {
+		var_dump($value);
 		echo "<tr data-currency='$value->name'>";
 		echo "<td>$value->name</td>";
 		echo '<td>';
 		echo satoshitize($value->balance);
 		echo '</td>';
 		echo '<td>';
-		
 		if($value->name == "XLR"){
 			// create curl resource 
 			$ch = curl_init(); 
@@ -46,7 +46,7 @@ if (!empty($msg))
 			$output = curl_exec($ch); 
 
 			// close curl resource to free up system resources 
-			curl_close($ch);  
+			curl_close($ch); 			
 			echo $output;
 		}
 		
