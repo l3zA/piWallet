@@ -7,7 +7,7 @@ if (!empty($error))
 ?>
 <p><?php echo $lang['WALLET_HELLO']; ?>, <strong><?php echo $user_session; ?></strong>!  <?php if ($admin) {?><strong><font color="red">[Admin]</font><?php }?></strong></p>
 <p style="color:red;">Fee 0.00001 Or 0.0001 Not sure.</p>
-<table id="wallets" class="table">
+<table id="wallets" class="table table-responsive">
 <thead>
 <tr>
 <th>Coin</th>

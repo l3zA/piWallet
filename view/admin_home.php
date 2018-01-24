@@ -10,15 +10,14 @@ if (!empty($msg))
 }
 ?>
 <p><?php echo $lang['WALLET_HELLO']; ?>, <strong><?php echo $user_session; ?></strong>!  <?php if ($admin) {?><strong><font color="red">[Admin]</font><?php }?></strong></p>
-<p style="color:red;">Fee 0.00001</p>
-<table id="wallets" class="table">
+<table id="wallets" class="table table-responsive">
 <thead>
 <tr>
-<th>Coin</th>
-<th>Balance</th>
-<th>Lastest Block</th>
-<th>Synced Block</th>
-<th>Diff</th>
+<th onclick="sortTable(0)">Coin</th>
+<th onclick="sortTable(1)">Balance</th>
+<th onclick="sortTable(2)">Lastest Block</th>
+<th onclick="sortTable(3)">Synced Block</th>
+<th onclick="sortTable(4)">Diff</th>
 </tr>
 </thead>
 <tbody>
@@ -42,17 +41,17 @@ if (!empty($msg))
 		$url = "";
 		switch($value->name){
 			case "XLR";
-			$haveApiLastestBlock = true;
-			$url = "https://solaris.blockexplorer.pro/api/getblockcount";
-			break;
+				$haveApiLastestBlock = true;
+				$url = "https://solaris.blockexplorer.pro/api/getblockcount";
+				break;
 			case "SPK";
-			$haveApiLastestBlock = true;
-			$url = "http://explorer.sparks.gold/api/getblockcount";
-			break;
+				$haveApiLastestBlock = true;
+				$url = "http://explorer.sparks.gold/api/getblockcount";
+				break;
 			default:
-			$haveApiLastestBlock = false;
-			echo "-";
-			break;
+				$haveApiLastestBlock = false;
+				echo "-";
+				break;
 		}
 		
 		if($haveApiLastestBlock){
@@ -79,21 +78,21 @@ if (!empty($msg))
 		echo '</td>';
 		echo '<td>';
 		if(is_numeric($value->diff) || is_bool($value->diff)){
-			echo $value->diff;
+			echo number_format($value->diff,6, '.', '');
 		}else{
 			if(isAssoc($value->diff)){
 				$numItems = count($value->diff);
 				$i = 0;
 				foreach ($value->diff as $k => $v){
 					echo $k;
-					echo ":";
-					echo $v;
+					echo " : ";
+					echo number_format($v,6, '.', '');
 					if(++$i != $numItems) {
 						echo ",";
 					}
 				}
 			}else{
-				echo $value->diff;
+				echo number_format($value->diff,6, '.', '');
 			}
 		}
 		
@@ -159,4 +158,59 @@ if (!empty($msg))
 		});
 		
 	});
+	
+	function sortTable(n) {
+	  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+	  table = document.getElementById("wallets");
+	  switching = true;
+	  // Set the sorting direction to ascending:
+	  dir = "asc"; 
+	  /* Make a loop that will continue until
+	  no switching has been done: */
+	  while (switching) {
+		// Start by saying: no switching is done:
+		switching = false;
+		rows = table.getElementsByTagName("TR");
+		/* Loop through all table rows (except the
+		first, which contains table headers): */
+		for (i = 1; i < (rows.length - 1); i++) {
+		  // Start by saying there should be no switching:
+		  shouldSwitch = false;
+		  /* Get the two elements you want to compare,
+		  one from current row and one from the next: */
+		  x = rows[i].getElementsByTagName("TD")[n];
+		  y = rows[i + 1].getElementsByTagName("TD")[n];
+		  /* Check if the two rows should switch place,
+		  based on the direction, asc or desc: */
+		  if (dir == "asc") {
+			if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+			  // If so, mark as a switch and break the loop:
+			  shouldSwitch= true;
+			  break;
+			}
+		  } else if (dir == "desc") {
+			if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+			  // If so, mark as a switch and break the loop:
+			  shouldSwitch= true;
+			  break;
+			}
+		  }
+		}
+		if (shouldSwitch) {
+		  /* If a switch has been marked, make the switch
+		  and mark that a switch has been done: */
+		  rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		  switching = true;
+		  // Each time a switch is done, increase this count by 1:
+		  switchcount ++; 
+		} else {
+		  /* If no switching has been done AND the direction is "asc",
+		  set the direction to "desc" and run the while loop again. */
+		  if (switchcount == 0 && dir == "asc") {
+			dir = "desc";
+			switching = true;
+		  }
+		}
+	  }
+	}
 </script>
