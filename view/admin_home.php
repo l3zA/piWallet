@@ -16,7 +16,7 @@ if (!empty($msg))
 <tr>
 <th>Coin</th>
 <th>Balance</th>
-<th>Last Block</th>
+<th>Lastest Block</th>
 <th>Synced Block</th>
 <th>Diff</th>
 </tr>
@@ -24,6 +24,12 @@ if (!empty($msg))
 <tbody>
 
 <?php 
+	function isAssoc(array $arr)
+	{
+		if (array() === $arr) return false;
+		return array_keys($arr) !== range(0, count($arr) - 1);
+	}
+
 	foreach ($coins as $value) {
 		echo "<tr data-currency='$value->name'>";
 		echo "<td>$value->name</td>";
@@ -32,26 +38,30 @@ if (!empty($msg))
 		echo '</td>';
 		echo '<td>';
 		$lastBlock = "";
+		$haveApiLastestBlock = false;
+		$url = "";
 		switch($value->name){
 			case "XLR";
-			$ch = curl_init(); 
-			curl_setopt($ch, CURLOPT_URL, "https://solaris.blockexplorer.pro/api/getblockcount"); 
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			$lastBlock = curl_exec($ch); 
-			curl_close($ch); 			
-			echo $lastBlock;
+			$haveApiLastestBlock = true;
+			$url = "https://solaris.blockexplorer.pro/api/getblockcount";
 			break;
 			case "SPK";
+			$haveApiLastestBlock = true;
+			$url = "http://explorer.sparks.gold/api/getblockcount";
+			break;
+			default:
+			$haveApiLastestBlock = false;
+			echo "-";
+			break;
+		}
+		
+		if($haveApiLastestBlock){
 			$ch = curl_init(); 
-			curl_setopt($ch, CURLOPT_URL, "http://explorer.sparks.gold/api/getblockcount"); 
+			curl_setopt($ch, CURLOPT_URL, $url); 
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			$lastBlock = curl_exec($ch); 
 			curl_close($ch); 			
 			echo $lastBlock;
-			break;
-			default:
-			echo "-";
-			break;
 		}
 		
 		echo '</td>';
@@ -68,7 +78,21 @@ if (!empty($msg))
 		
 		echo '</td>';
 		echo '<td>';
-		echo $value->diff;
+		if(isAssoc($value->diff)){
+			$numItems = count($value->diff);
+			$i = 0;
+			foreach ($value->diff as $k => $v){
+				echo $k;
+				echo ":";
+				echo $v;
+				if(++$i != $numItems) {
+					echo ",";
+				}
+			}
+		}else{
+			echo $value->diff;
+		}
+		
 		echo '</td>';
 		echo "</tr>";
 	}
