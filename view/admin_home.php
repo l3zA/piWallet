@@ -25,37 +25,50 @@ if (!empty($msg))
 
 <?php 
 	foreach ($coins as $value) {
-		var_dump($value);
 		echo "<tr data-currency='$value->name'>";
 		echo "<td>$value->name</td>";
 		echo '<td>';
 		echo satoshitize($value->balance);
 		echo '</td>';
 		echo '<td>';
-		if($value->name == "XLR"){
-			// create curl resource 
+		$lastBlock = "";
+		switch($value->name){
+			case "XLR";
 			$ch = curl_init(); 
-
-			// set url 
 			curl_setopt($ch, CURLOPT_URL, "https://solaris.blockexplorer.pro/api/getblockcount"); 
-
-			//return the transfer as a string 
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-
-			// $output contains the output string 
-			$output = curl_exec($ch); 
-
-			// close curl resource to free up system resources 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			$lastBlock = curl_exec($ch); 
 			curl_close($ch); 			
-			echo $output;
+			echo $lastBlock;
+			break;
+			case "SPK";
+			$ch = curl_init(); 
+			curl_setopt($ch, CURLOPT_URL, "http://explorer.sparks.gold/api/getblockcount"); 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			$lastBlock = curl_exec($ch); 
+			curl_close($ch); 			
+			echo $lastBlock;
+			break;
+			default:
+			echo "-";
+			break;
 		}
 		
 		echo '</td>';
 		echo '<td>';
-		echo $value->syncedBlock
+		if($lastBlock!=""){
+			if($lastBlock>$value->syncedBlock){
+				echo "<span style='color:red'>$value->syncedBlock</span>";
+			}else{
+				echo "<span style='color:green'>$value->syncedBlock</span>";
+			}
+		}else{
+			echo $value->syncedBlock;
+		}
+		
 		echo '</td>';
 		echo '<td>';
-		echo $value->diff
+		echo $value->diff;
 		echo '</td>';
 		echo "</tr>";
 	}
