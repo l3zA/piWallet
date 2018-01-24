@@ -17,8 +17,9 @@
 		<link href="assets/css/languages.min.css" rel="stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/sorting-plugins.js"></script>
         <!-- End Bootstrap include stuff-->
         <title><?=$fullname?> Wallet</title>
         <link rel="shortcut icon" href="favicon.ico">
