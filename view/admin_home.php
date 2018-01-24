@@ -78,21 +78,26 @@ if (!empty($msg))
 		
 		echo '</td>';
 		echo '<td>';
-		/*if(isAssoc($value->diff)){
-			$numItems = count($value->diff);
-			$i = 0;
-			foreach ($value->diff as $k => $v){
-				echo $k;
-				echo ":";
-				echo $v;
-				if(++$i != $numItems) {
-					echo ",";
-				}
-			}
+		if(is_numeric($value->diff) || is_bool($value->diff)){
+			echo $value->diff;
 		}else{
-			
-		}*/
-		echo $value->diff;
+			if(isAssoc($value->diff)){
+				$numItems = count($value->diff);
+				$i = 0;
+				foreach ($value->diff as $k => $v){
+					echo $k;
+					echo ":";
+					echo $v;
+					if(++$i != $numItems) {
+						echo ",";
+					}
+				}
+			}else{
+				echo $value->diff;
+			}
+		}
+		
+		
 		echo '</td>';
 		echo "</tr>";
 	}
