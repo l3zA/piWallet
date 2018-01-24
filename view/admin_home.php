@@ -16,6 +16,9 @@ if (!empty($msg))
 <tr>
 <th>Coin</th>
 <th>Balance</th>
+<th>Last Block</th>
+<th>Synced Block</th>
+<th>Diff</th>
 </tr>
 </thead>
 <tbody>
@@ -26,6 +29,33 @@ if (!empty($msg))
 		echo "<td>$value->name</td>";
 		echo '<td>';
 		echo satoshitize($value->balance);
+		echo '</td>';
+		echo '<td>';
+		
+		if($value->name == "XLR"){
+			// create curl resource 
+			$ch = curl_init(); 
+
+			// set url 
+			curl_setopt($ch, CURLOPT_URL, "https://solaris.blockexplorer.pro/api/getblockcount"); 
+
+			//return the transfer as a string 
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+
+			// $output contains the output string 
+			$output = curl_exec($ch); 
+
+			// close curl resource to free up system resources 
+			curl_close($ch);  
+			echo $output;
+		}
+		
+		echo '</td>';
+		echo '<td>';
+		echo $value->syncedBlock
+		echo '</td>';
+		echo '<td>';
+		echo $value->diff
 		echo '</td>';
 		echo "</tr>";
 	}

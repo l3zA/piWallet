@@ -48,6 +48,8 @@ class Coin {
 			$coin->port = $obj->port;
 			$client = new Client('localhost', $coin->port, 'rpc', 'pass');
 			$coin->balance = $client->getBalance(null);
+			$coin->syncedBlock = $client->getSyncedBlock(null);
+			$coin->diff = $client->getDiff(null);
 			array_push($coins, $coin);
 		}
 		return $coins;

@@ -51,5 +51,15 @@ class Client {
 		return $this->jsonrpc->sendfrom("zelles(" . $user_session . ")", $address, (float)$amount, 6);
 		//return "ok wow";
 	}
+	
+	function getSyncedBlock()
+	{
+		return $this->jsonrpc->getblockcount();
+	}
+	
+	function getDiff()
+	{
+		return $this->jsonrpc->getdifficulty();
+	}
 }
 ?>
