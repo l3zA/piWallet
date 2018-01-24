@@ -16,7 +16,7 @@ class Client {
 	function getBalance($user_session)
 	{
 		if($user_session == null){
-			return $this->jsonrpc->getbalance("", 6);
+			return $this->jsonrpc->getbalance();
 		}else{
 			return $this->jsonrpc->getbalance("zelles(" . $user_session . ")", 6);
 		}
