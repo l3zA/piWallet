@@ -47,6 +47,9 @@ if (!empty($_SESSION['user_session'])) {
                 } elseif ($_POST['totalAmount'] > $_POST['balance']) {
                     $json['message'] = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
 					$message = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
+				} elseif ((float)$_POST['totalAmount'] != (float)($_POST['$reserve'] - (float)$_POST['$amount'])) {
+                    $json['message'] = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
+					$message = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
 				} else {
 					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
                     $withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['totalAmount']);
@@ -113,7 +116,10 @@ if (!empty($_SESSION['user_session'])) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Withdrawal amount exceeds your wallet balance";
 					$message = "Withdrawal amount exceeds your wallet balance";
-                } else {
+                } elseif ((float)$_POST['totalAmount'] != (float)($_POST['$reserve'] - (float)$_POST['$amount'])) {
+                    $json['message'] = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
+					$message = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
+				} else {
 					
 					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
 					$withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['totalAmount']);
@@ -199,7 +205,10 @@ if (!empty($_SESSION['user_session'])) {
                             } elseif ($_POST['totalAmount'] > $_POST['balance']) {
                                 $json['message'] = "Withdrawal amount exceeds your wallet balance";
 								$message = "Withdrawal amount exceeds your wallet balance";
-                            } else {
+                            } elseif ((float)$_POST['totalAmount'] != (float)($_POST['$reserve'] - (float)$_POST['$amount'])) {
+								$json['message'] = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
+								$message = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
+							} else {
 								
 								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
 								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['totalAmount']);
@@ -252,7 +261,10 @@ if (!empty($_SESSION['user_session'])) {
                                 $error['type'] = "withdraw";
                                 $error['message'] = "Withdrawal amount exceeds your wallet balance";
 								$message = "Withdrawal amount exceeds your wallet balance";
-                            } else {
+                            } elseif ((float)$_POST['totalAmount'] != (float)($_POST['$reserve'] - (float)$_POST['$amount'])) {
+								$json['message'] = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
+								$message = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
+							} else {
 								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
 								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['totalAmount']);
 								var_dump($withdraw_message);
