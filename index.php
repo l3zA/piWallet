@@ -56,7 +56,7 @@ if (!empty($_SESSION['user_session'])) {
                     $json['newtoken'] = $_SESSION['token'];
                     $json['success'] = true;
                     $json['message'] = "Withdrawal successful";
-					$message = "Withdrawal successful";
+					$message = $withdraw_message;
 					header("Location: index.php");
                 }
                 echo json_encode($json); exit;
@@ -66,10 +66,12 @@ if (!empty($_SESSION['user_session'])) {
                 $json['success'] = false;
                 if (empty($_POST['oldpassword']) || empty($_POST['newpassword']) || empty($_POST['confirmpassword'])) {
                     $json['message'] = "You have to fill all the fields";
+					$message = "You have to fill all the fields";
                 } elseif ($_POST['token'] != $_SESSION['token']) {
                     $json['message'] = "Tokens do not match";
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                     $json['newtoken'] = $_SESSION['token'];
+					$message = "Tokens do not match";
                 } else {
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                     $json['newtoken'] = $_SESSION['token'];
@@ -77,8 +79,10 @@ if (!empty($_SESSION['user_session'])) {
                     if ($result === true) {
                         $json['success'] = true;
                         $json['message'] = "Password updated successfully.";
+						$message = "Password updated successfully.";
                     } else {
                         $json['message'] = $result;
+						$message = $result;
                     }
                 }
                 echo json_encode($json); exit;
@@ -103,9 +107,11 @@ if (!empty($_SESSION['user_session'])) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Tokens do not match";
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
+					$message = "Tokens do not match";
                 } elseif ($_POST['amount'] > $_POST['balance']) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Withdrawal amount exceeds your wallet balance";
+					$message = "Withdrawal amount exceeds your wallet balance";
                 } else {
 					
 					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
@@ -113,6 +119,7 @@ if (!empty($_SESSION['user_session'])) {
 					echo '!admin';
 					echo $withdraw_coin->getBalance($user_session);
 					$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
+					$message = $withdraw_message;
                     header("Location: index.php");
                 }
                 break;
@@ -183,10 +190,13 @@ if (!empty($_SESSION['user_session'])) {
                             $json['success'] = false;
                             if (!WITHDRAWALS_ENABLED) {
                                 $json['message'] = "Withdrawals are temporarily disabled";
+								$message = "Withdrawals are temporarily disabled";
                             } elseif (empty($_POST['address']) || empty($_POST['amount']) || !is_numeric($_POST['amount'])) {
                                 $json['message'] = "You have to fill all the fields";
+								$message = "You have to fill all the fields";
                             } elseif ($_POST['amount'] > $_POST['balance']) {
                                 $json['message'] = "Withdrawal amount exceeds your wallet balance";
+								$message = "Withdrawal amount exceeds your wallet balance";
                             } else {
 								
 								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
@@ -199,6 +209,7 @@ if (!empty($_SESSION['user_session'])) {
 								
                                 $json['success'] = true;
                                 $json['message'] = "Withdrawal successful";
+								$message = $withdraw_message;
                                 header("Location: index.php");
                             }
                             echo json_encode($json); exit;
@@ -230,18 +241,22 @@ if (!empty($_SESSION['user_session'])) {
                             if (!WITHDRAWALS_ENABLED) {
                                 $error['type'] = "withdraw";
                                 $error['message'] = "Withdrawals are temporarily disabled";
+								$message = "Withdrawals are temporarily disabled";
                             } elseif (empty($_POST['address']) || empty($_POST['amount']) || !is_numeric($_POST['amount'])) {
                                 $error['type'] = "withdraw";
                                 $error['message'] = "You have to fill all the fields";
+								$message = "You have to fill all the fields";
                             } elseif ($_POST['amount'] > $_POST['balance']) {
                                 $error['type'] = "withdraw";
                                 $error['message'] = "Withdrawal amount exceeds your wallet balance";
+								$message = "Withdrawal amount exceeds your wallet balance";
                             } else {
 								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
 								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
 								echo 'admin';
 								echo $withdraw_coin->getBalance($info['username']);
 								$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
+								$message = $withdraw_message;
                                 header("Location: index.php?a=info&i=" . $info['id']);
                             }
                             break;

@@ -4,6 +4,10 @@ if (!empty($error))
 {
     echo "<p style='font-weight: bold; color: red;'>" . $error['message']; "</p>";
 }
+if (!empty($message))
+{
+    echo "<p style='font-weight: bold; color: blue;'>" . message; "</p>";
+}
 ?>
 <p><?php echo $lang['WALLET_HELLO']; ?>, <strong><?php echo $user_session; ?></strong>!  <?php if ($admin) {?><strong><font color="red">[Admin]</font><?php }?></strong></p>
 <p style="color:red;">Fee 0.00001 Or 0.0001 Not sure.</p>
@@ -21,8 +25,8 @@ if (!empty($error))
 <?php 
 	foreach ($coins as $value) {
 		echo "<tr data-currency='$value->name'>";
-		echo "<td><a href='?t=true&p=$value->port'>$value->name</a></td>";
-		echo '<td>';
+		echo "<td><a href='?t=true&p=$value->port'>$value->name</a> ($value->fullName)</td>";
+		echo '<td onclick="addToWalletAmount(this)">';
 		echo satoshitize($value->balance);
 		echo '</td>';
 		echo "<td class='blue'>";
@@ -144,12 +148,18 @@ if ($admin)
 
 $(document).ready(function(){
 	
-$(".amount").on('keyup', function(){
-	var amount = $(this).val();
-	$(this).parent('div').parent('form').children('.received').text((parseFloat(amount) - 0.00001).toFixed(8));
-});
+	$(".amount").on('keyup', function(){
+		var amount = $(this).val();
+		$(this).parent('div').parent('form').children('.received').text((parseFloat(amount) - 0.00001).toFixed(8));
+	});
+	
 });
 
+
+function addToWalletAmount(this){
+	var amount = $(this).text();
+	$(this).next('td').next('td').children('form').children('div.col-md-3').children('.amount').val(amount);
+}
 
 var blockchain_url = "<?=$blockchain_url?>";
 $("#withdrawform input[name='action']").first().attr("name", "jsaction");
