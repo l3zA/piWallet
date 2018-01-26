@@ -10,7 +10,7 @@ if (!empty($message))
 }
 ?>
 <p><?php echo $lang['WALLET_HELLO']; ?>, <strong><?php echo $user_session; ?></strong>!  <?php if ($admin) {?><strong><font color="red">[Admin]</font><?php }?></strong></p>
-<p style="color:red;">Fee 0.00001 Or 0.0001 Not sure.</p>
+<p style="color:red;">Fee 0.0001 Not sure.</p>
 <table id="wallets" class="table table-responsive">
 <thead>
 <tr>
@@ -41,6 +41,7 @@ if (!empty($message))
 	echo "<input type='hidden' name='coin' value='$value->name' />";
 	echo "<input type='hidden' name='balance' value='$value->balance' />";
 	echo "<input type='hidden' name='port' value='$value->port' />";
+	echo "<input type='hidden' id='totalAmount' name='totalAmount' value='' />";
     echo "<div class='col-md-5'><input type='text' class='form-control address' name='address' placeholder='Wallet Address'></div>";
     echo "<div class='col-md-3'><input type='text' class='form-control amount' name='amount'  placeholder='Wallet Amount'></div>";
     echo "<div class='col-md-2'><button type='submit' class='btn btn-default'>Send</button></div>Received : <span class='received'></span>";
@@ -150,7 +151,8 @@ $(document).ready(function(){
 	
 	$(".amount").on('keyup', function(){
 		var amount = $(this).val();
-		$(this).parent('div').parent('form').children('.received').text((parseFloat(amount) - 0.00001).toFixed(8));
+		$(this).parent('div').parent('form').children('.received').text((parseFloat(amount) - 0.0001).toFixed(8));
+		$("#totalAmount").val((parseFloat(amount) - 0.0001).toFixed(8));
 	});
 	
 });

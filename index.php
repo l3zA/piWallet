@@ -36,7 +36,7 @@ if (!empty($_SESSION['user_session'])) {
                 if (!WITHDRAWALS_ENABLED) {
                     $json['message'] = "Withdrawals are temporarily disabled";
 					$message = "Withdrawals are temporarily disabled";
-                } elseif (empty($_POST['address']) || empty($_POST['amount']) || !is_numeric($_POST['amount'])) {
+                } elseif (empty($_POST['address']) || empty($_POST['totalAmount']) || !is_numeric($_POST['totalAmount'])) {
                     $json['message'] = "You have to fill all the fields";
 					$message = "You have to fill all the fields";
                 } elseif ($_POST['token'] != $_SESSION['token']) {
@@ -44,12 +44,12 @@ if (!empty($_SESSION['user_session'])) {
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                     $json['newtoken'] = $_SESSION['token'];
 					$message = "Tokens do not match";
-                } elseif ($_POST['amount'] > $_POST['balance']) {
+                } elseif ($_POST['totalAmount'] > $_POST['balance']) {
                     $json['message'] = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
 					$message = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
 				} else {
 					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
-                    $withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
+                    $withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['totalAmount']);
 					var_dump($withdraw_message);
 					echo '!admin';
 					echo $withdraw_coin->getBalance($user_session);
@@ -100,7 +100,7 @@ if (!empty($_SESSION['user_session'])) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Withdrawals are temporarily disabled";
 					$message = "Withdrawals are temporarily disabled";
-                } elseif (empty($_POST['address']) || empty($_POST['amount']) || !is_numeric($_POST['amount'])) {
+                } elseif (empty($_POST['address']) || empty($_POST['totalAmount']) || !is_numeric($_POST['totalAmount'])) {
                     $error['type'] = "withdraw";
                     $error['message'] = "You have to fill all the fields";
 					$message = "You have to fill all the fields";
@@ -109,14 +109,14 @@ if (!empty($_SESSION['user_session'])) {
                     $error['message'] = "Tokens do not match";
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
 					$message = "Tokens do not match";
-                } elseif ($_POST['amount'] > $_POST['balance']) {
+                } elseif ($_POST['totalAmount'] > $_POST['balance']) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Withdrawal amount exceeds your wallet balance";
 					$message = "Withdrawal amount exceeds your wallet balance";
                 } else {
 					
 					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
-					$withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
+					$withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['totalAmount']);
 					var_dump($withdraw_message);
 					echo '!admin';
 					echo $withdraw_coin->getBalance($user_session);
@@ -193,16 +193,16 @@ if (!empty($_SESSION['user_session'])) {
                             if (!WITHDRAWALS_ENABLED) {
                                 $json['message'] = "Withdrawals are temporarily disabled";
 								$message = "Withdrawals are temporarily disabled";
-                            } elseif (empty($_POST['address']) || empty($_POST['amount']) || !is_numeric($_POST['amount'])) {
+                            } elseif (empty($_POST['address']) || empty($_POST['totalAmount']) || !is_numeric($_POST['amount'])) {
                                 $json['message'] = "You have to fill all the fields";
 								$message = "You have to fill all the fields";
-                            } elseif ($_POST['amount'] > $_POST['balance']) {
+                            } elseif ($_POST['totalAmount'] > $_POST['balance']) {
                                 $json['message'] = "Withdrawal amount exceeds your wallet balance";
 								$message = "Withdrawal amount exceeds your wallet balance";
                             } else {
 								
 								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
-								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
+								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['totalAmount']);
 								var_dump($withdraw_message);
 								echo 'admin';
 								echo $withdraw_coin->getBalance($info['username']);
@@ -244,17 +244,17 @@ if (!empty($_SESSION['user_session'])) {
                                 $error['type'] = "withdraw";
                                 $error['message'] = "Withdrawals are temporarily disabled";
 								$message = "Withdrawals are temporarily disabled";
-                            } elseif (empty($_POST['address']) || empty($_POST['amount']) || !is_numeric($_POST['amount'])) {
+                            } elseif (empty($_POST['address']) || empty($_POST['totalAmount']) || !is_numeric($_POST['amount'])) {
                                 $error['type'] = "withdraw";
                                 $error['message'] = "You have to fill all the fields";
 								$message = "You have to fill all the fields";
-                            } elseif ($_POST['amount'] > $_POST['balance']) {
+                            } elseif ($_POST['totalAmount'] > $_POST['balance']) {
                                 $error['type'] = "withdraw";
                                 $error['message'] = "Withdrawal amount exceeds your wallet balance";
 								$message = "Withdrawal amount exceeds your wallet balance";
                             } else {
 								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
-								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
+								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['totalAmount']);
 								var_dump($withdraw_message);
 								echo 'admin';
 								echo $withdraw_coin->getBalance($info['username']);
