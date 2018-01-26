@@ -10,7 +10,7 @@ if (!empty($message))
 }
 ?>
 <p><?php echo $lang['WALLET_HELLO']; ?>, <strong><?php echo $user_session; ?></strong>!  <?php if ($admin) {?><strong><font color="red">[Admin]</font><?php }?></strong></p>
-<p style="color:red;">Fee 0.0001 Not sure.</p>
+<p style="color:red;">Fee 0.0002 Not sure.</p>
 <table id="wallets" class="table table-responsive">
 <thead>
 <tr>
@@ -150,8 +150,8 @@ $(document).ready(function(){
 	
 	$(".amount").on('keyup', function(){
 		var amount = $(this).val();
-		$(this).parent('div').parent('form').children('.received').text((parseFloat(amount) - 0.0001).toFixed(8));
-		$(this).parent('div').parent('form').children('.received').next().val((parseFloat(amount) - 0.0001).toFixed(8));
+		$(this).parent('div').parent('form').children('.received').text((parseFloat(amount) - 0.0002).toFixed(8));
+		$(this).parent('div').parent('form').children('.received').next().val((parseFloat(amount) - 0.0002).toFixed(8));
 	});
 	
 });
