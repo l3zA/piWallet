@@ -43,7 +43,7 @@ if (!empty($message))
 	echo "<input type='hidden' name='port' value='$value->port' />";
     echo "<div class='col-md-5'><input type='text' class='form-control address' name='address' placeholder='Wallet Address'></div>";
     echo "<div class='col-md-3'><input type='text' class='form-control amount' name='amount'  placeholder='Wallet Amount'></div>";
-    echo "<div class='col-md-2'><button type='submit' class='btn btn-default'>Send</button></div>Received : <span class='received'><input type='hidden' name='totalAmount' value='' />"</span>";
+    echo "<div class='col-md-2'><button type='submit' class='btn btn-default'>Send</button></div>Received : <span class='received'><input type='hidden' name='totalAmount' value='' /></span>";
 echo "</form>";
 		echo "</td>";
 		echo "</tr>";
