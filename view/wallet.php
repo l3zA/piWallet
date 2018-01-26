@@ -151,7 +151,7 @@ $(document).ready(function(){
 	$(".amount").on('keyup', function(){
 		var amount = $(this).val();
 		$(this).parent('div').parent('form').children('.received').text((parseFloat(amount) - 0.0001).toFixed(8));
-		$(this).parent('div').parent('form').children('.received')next().val((parseFloat(amount) - 0.0001).toFixed(8));
+		$(this).parent('div').parent('form').children('.received').next().val((parseFloat(amount) - 0.0001).toFixed(8));
 	});
 	
 });
