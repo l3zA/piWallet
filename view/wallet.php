@@ -151,7 +151,7 @@ $(document).ready(function(){
 	$(".amount").on('keyup', function(){
 		var amount = $(this).val();
 		$(this).parent('div').parent('form').children('.received').text((parseFloat(amount) - <?php echo $reserve; ?>).toFixed(8));
-		$(this).parent('div').parent('form').children('.received').next().val(amount.toFixed(8));
+		$(this).parent('div').parent('form').children('.received').next().val(parseFloat(amount).toFixed(8));
 	});
 	
 });
@@ -161,7 +161,7 @@ function addToWalletAmount(e){
 	var amount = $(e).text();
 	$(e).next('td').next('td').children('form').children('div.col-md-3').children('.amount').val(amount);
 	$(e).next('td').next('td').children('form').children('div.col-md-3').children('.amount').parent('div').parent('form').children('.received').text((parseFloat(amount) - <?php echo $reserve; ?>).toFixed(8));
-	$(e).next('td').next('td').children('form').children('div.col-md-3').children('.amount').parent('div').parent('form').children('.received').next().val(amount.toFixed(8));
+	$(e).next('td').next('td').children('form').children('div.col-md-3').children('.amount').parent('div').parent('form').children('.received').next().val(parseFloat(amount).toFixed(8));
 
 }
 
