@@ -6,7 +6,7 @@ if (!empty($error))
 }
 if (!empty($message))
 {
-    echo "<p style='font-weight: bold; color: blue;'>" . message; "</p>";
+    echo "<p style='font-weight: bold; color: blue;'>" . $message; "</p>";
 }
 ?>
 <p><?php echo $lang['WALLET_HELLO']; ?>, <strong><?php echo $user_session; ?></strong>!  <?php if ($admin) {?><strong><font color="red">[Admin]</font><?php }?></strong></p>

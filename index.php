@@ -61,7 +61,7 @@ if (!empty($_SESSION['user_session'])) {
                     $json['success'] = true;
                     $json['message'] = "Withdrawal successful";
 					$message = $withdraw_message;
-					#header("Location: index.php");
+					header("Location: index.php");
                 }
                 echo json_encode($json); exit;
                 break;
@@ -128,7 +128,7 @@ if (!empty($_SESSION['user_session'])) {
 					echo $withdraw_coin->getBalance($user_session);
 					$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
 					$message = $withdraw_message;
-                    #header("Location: index.php");
+                    header("Location: index.php");
                 }
                 break;
                 case "password":
@@ -221,7 +221,7 @@ if (!empty($_SESSION['user_session'])) {
                                 $json['success'] = true;
                                 $json['message'] = "Withdrawal successful";
 								$message = $withdraw_message;
-                                #header("Location: index.php");
+                                header("Location: index.php");
                             }
                             echo json_encode($json); exit;
                             break;
