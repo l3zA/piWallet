@@ -156,9 +156,9 @@ $(document).ready(function(){
 });
 
 
-function addToWalletAmount(this){
-	var amount = $(this).text();
-	$(this).next('td').next('td').children('form').children('div.col-md-3').children('.amount').val(amount);
+function addToWalletAmount(e){
+	var amount = $(e).text();
+	$(e).next('td').next('td').children('form').children('div.col-md-3').children('.amount').val(amount);
 }
 
 var blockchain_url = "<?=$blockchain_url?>";
