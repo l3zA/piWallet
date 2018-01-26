@@ -35,15 +35,19 @@ if (!empty($_SESSION['user_session'])) {
                 $json['success'] = false;
                 if (!WITHDRAWALS_ENABLED) {
                     $json['message'] = "Withdrawals are temporarily disabled";
+					$message = "Withdrawals are temporarily disabled";
                 } elseif (empty($_POST['address']) || empty($_POST['amount']) || !is_numeric($_POST['amount'])) {
                     $json['message'] = "You have to fill all the fields";
+					$message = "You have to fill all the fields";
                 } elseif ($_POST['token'] != $_SESSION['token']) {
                     $json['message'] = "Tokens do not match";
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
                     $json['newtoken'] = $_SESSION['token'];
+					$message = "Tokens do not match";
                 } elseif ($_POST['amount'] > $_POST['balance']) {
                     $json['message'] = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
-                } else {
+					$message = "Withdrawal amount exceeds your wallet balance. Please note the wallet owner has set a reserve fee of $reserve $short.";
+				} else {
 					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
                     $withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
 					echo '!admin';
@@ -52,7 +56,8 @@ if (!empty($_SESSION['user_session'])) {
                     $json['newtoken'] = $_SESSION['token'];
                     $json['success'] = true;
                     $json['message'] = "Withdrawal successful";
-					#header("Location: index.php");
+					$message = "Withdrawal successful";
+					header("Location: index.php");
                 }
                 echo json_encode($json); exit;
                 break;
@@ -89,9 +94,11 @@ if (!empty($_SESSION['user_session'])) {
                 if (!WITHDRAWALS_ENABLED) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Withdrawals are temporarily disabled";
+					$message = "Withdrawals are temporarily disabled";
                 } elseif (empty($_POST['address']) || empty($_POST['amount']) || !is_numeric($_POST['amount'])) {
                     $error['type'] = "withdraw";
                     $error['message'] = "You have to fill all the fields";
+					$message = "You have to fill all the fields";
                 } elseif ($_POST['token'] != $_SESSION['token']) {
                     $error['type'] = "withdraw";
                     $error['message'] = "Tokens do not match";
@@ -192,7 +199,7 @@ if (!empty($_SESSION['user_session'])) {
 								
                                 $json['success'] = true;
                                 $json['message'] = "Withdrawal successful";
-                                #header("Location: index.php");
+                                header("Location: index.php");
                             }
                             echo json_encode($json); exit;
                             break;
