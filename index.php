@@ -50,6 +50,7 @@ if (!empty($_SESSION['user_session'])) {
 				} else {
 					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
                     $withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
+					var_dump($withdraw_message);
 					echo '!admin';
 					echo $withdraw_coin->getBalance($user_session);
                     $_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
@@ -116,6 +117,7 @@ if (!empty($_SESSION['user_session'])) {
 					
 					$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
 					$withdraw_message = $withdraw_coin->withdraw($user_session, $_POST['address'], (float)$_POST['amount']);
+					var_dump($withdraw_message);
 					echo '!admin';
 					echo $withdraw_coin->getBalance($user_session);
 					$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
@@ -201,7 +203,7 @@ if (!empty($_SESSION['user_session'])) {
 								
 								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
 								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
-								
+								var_dump($withdraw_message);
 								echo 'admin';
 								echo $withdraw_coin->getBalance($info['username']);
 								
@@ -253,6 +255,7 @@ if (!empty($_SESSION['user_session'])) {
                             } else {
 								$withdraw_coin = new Client('localhost', $_POST['port'], 'rpc', 'pass');
 								$withdraw_message = $withdraw_coin->withdraw($info['username'], $_POST['address'], (float)$_POST['amount']);
+								var_dump($withdraw_message);
 								echo 'admin';
 								echo $withdraw_coin->getBalance($info['username']);
 								$_SESSION['token'] = sha1('@s%a$l£t#'.rand(0,10000));
