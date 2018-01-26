@@ -160,8 +160,8 @@ $(document).ready(function(){
 function addToWalletAmount(e){
 	var amount = $(e).text();
 	$(e).next('td').next('td').children('form').children('div.col-md-3').children('.amount').val(amount);
-	$(e).next('td').next('td').children('form').children('div.col-md-3').children('.amount').parent('div').parent('form').children('.received').text((parseFloat(amount) - 0.00001).toFixed(8));
-	$(e).next('td').next('td').children('form').children('div.col-md-3').children('.amount').parent('div').parent('form').children('.received').next().val((parseFloat(amount) - 0.0001).toFixed(8));
+	$(e).next('td').next('td').children('form').children('div.col-md-3').children('.amount').parent('div').parent('form').children('.received').text((parseFloat(amount) - 0.0002).toFixed(8));
+	$(e).next('td').next('td').children('form').children('div.col-md-3').children('.amount').parent('div').parent('form').children('.received').next().val((parseFloat(amount) - 0.0002).toFixed(8));
 
 }
 
