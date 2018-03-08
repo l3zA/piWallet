@@ -35,31 +35,10 @@ if (!empty($msg))
 		echo '<td>';
 		echo satoshitize($value->balance);
 		echo '</td>';
-		echo '<td>';
-		$lastBlock = "";
-		if(!is_null($value->lastestBlockAPI) && $value->lastestBlockAPI != ""){
-			$ch = curl_init(); 
-			curl_setopt($ch, CURLOPT_URL, $value->lastestBlockAPI); 
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			$lastBlock = curl_exec($ch); 
-			curl_close($ch); 			
-			echo $lastBlock;
-		}else{
-			echo "-";
-		}
-		
+		echo '<td><input type="hidden" class="lastestBlockAPI" value="$value->lastestBlockAPI"/>';
 		echo '</td>';
-		echo '<td>';
-		if($lastBlock!=""){
-			if($lastBlock>$value->syncedBlock){
-				echo "<span style='color:red'>$value->syncedBlock</span>";
-			}else{
-				echo "<span style='color:green'>$value->syncedBlock</span>";
-			}
-		}else{
-			echo $value->syncedBlock;
-		}
-		
+		echo '<td class="lastBlock">';
+		echo $value->syncedBlock;
 		echo '</td>';
 		echo '<td>';
 		if(is_numeric($value->diff) || is_bool($value->diff)){
