@@ -1,4 +1,5 @@
 <?php if (!defined("IN_WALLET")) { die("Auth Error!"); } ?>
+<script src="https://raw.githubusercontent.com/padolsey-archive/jquery.fn/master/cross-domain-ajax/jquery.xdomainajax.js"></script>
 <?php
 if (!empty($error))
 {
@@ -35,7 +36,7 @@ if (!empty($msg))
 		echo '<td>';
 		echo satoshitize($value->balance);
 		echo '</td>';
-		echo '<td><input type="hidden" class="lastestBlockAPI" value="$value->lastestBlockAPI"/>';
+		echo '<td class="lastestBlockAPI"><input type="hidden" class="url" value="$value->lastestBlockAPI"/>';
 		echo '</td>';
 		echo '<td class="lastBlock">';
 		echo $value->syncedBlock;
@@ -119,6 +120,13 @@ if (!empty($msg))
 				window.location = "?a=home&i=i&m=addcoin&fullname=" + $("#fullName").val() + "&name=" + $("#name").val() + "&port=" + $("#port").val() + "&blockapiurl=" + $("#blockapiurl").val();
 			}else{
 				alert('please fill form');
+			}
+		});
+
+		$( ".lastestBlockAPI" ).each(function() {
+		 	var url = $(this).children('.lastestBlockAPI').val();
+			if(url != ""){
+					
 			}
 		});
 		
