@@ -1,5 +1,5 @@
 <?php if (!defined("IN_WALLET")) { die("Auth Error!"); } ?>
-<script src="https://raw.githubusercontent.com/padolsey-archive/jquery.fn/master/cross-domain-ajax/jquery.xdomainajax.js"></script>
+<script src="assets/js/jquery.xdomainajax.js"></script>
 <?php
 if (!empty($error))
 {
