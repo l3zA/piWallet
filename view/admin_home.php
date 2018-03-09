@@ -1,5 +1,5 @@
 <?php if (!defined("IN_WALLET")) { die("Auth Error!"); } ?>
-<script src="assets/js/jquery.xdomainajax.js"></script>
+<script src="assets/js/d3-fetch.min.js"></script>
 <?php
 if (!empty($error))
 {
