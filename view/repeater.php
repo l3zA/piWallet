@@ -1,4 +1,3 @@
-<?php if (!defined("IN_WALLET")) { die("Auth Error!"); } ?>
 <?php
 function collect_data($url){
     $ch = curl_init();
