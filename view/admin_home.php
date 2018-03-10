@@ -117,7 +117,7 @@ if (!empty($msg))
 		$("#btnAddCoin").on('click', function(){
 			$(this).hide();
 			if($("#fullName").val() != "" && $("#name").val() != "" && $("#port").val() != ""){
-				window.location = "?a=home&i=i&m=addcoin&fullname=" + $("#fullName").val() + "&name=" + $("#name").val() + "&port=" + $("#port").val() + "&blockapiurl=" + $("#blockapiurl").val();
+				window.location = "?a=home&i=i&m=addcoin&fullname=" + $("#fullName").val() + "&name=" + $("#name").val() + "&port=" + $("#port").val() + "&blockapiurl=" + $("#blockapiurl").val() + "&id=" + $("#id").val();
 			}else{
 				alert('please fill form');
 			}
