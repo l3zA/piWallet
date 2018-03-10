@@ -31,7 +31,7 @@ if (!empty($msg))
 
 	foreach ($coins as $value) {
 		echo "<tr data-currency='$value->name'>";
-		echo "<td>$value->name</td>";
+		echo "<td><a href='?a=home&fullName=$value->fullName&name=$value->name&name=$value->name&port=$value->port&blockapiurl=$value->blockapiurl'>$value->name</a></td>";
 		echo '<td>';
 		echo satoshitize($value->balance);
 		echo '</td>';
@@ -75,9 +75,9 @@ if (!empty($msg))
 <p><strong>Add Coin</strong></p>
 <form action="index.php?a=home" method="POST" class="clearfix" id="coinform">
     <div class="col-md-2"><input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" value="<?php echo $_GET['fullName']; ?>"></div>
-    <div class="col-md-2"><input type="text" class="form-control" id="name" name="name" placeholder="Shot Name"></div>
-    <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="Port"></div>
-	<div class="col-md-3"><input type="text" class="form-control" id="blockapiurl" name="blockapiurl" placeholder="URL Lastest Block API"></div>
+    <div class="col-md-2"><input type="text" class="form-control" id="name" name="name" placeholder="Shot Name" value="<?php echo $_GET['name']; ?>"></div>
+    <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="Port" value="<?php echo $_GET['port']; ?>"></div>
+	<div class="col-md-3"><input type="text" class="form-control" id="blockapiurl" name="blockapiurl" placeholder="URL Lastest Block API" value="<?php echo $_GET['blockapiurl']; ?>"></div>
     <div class="col-md-2">
 	<a class="btn btn-default" href="#" id="btnAddCoin">Add</a>
 	</div>
