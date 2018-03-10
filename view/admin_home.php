@@ -74,10 +74,10 @@ if (!empty($msg))
 <br /><br />
 <p><strong>Add Coin</strong></p>
 <form action="index.php?a=home" method="POST" class="clearfix" id="coinform">
-    <div class="col-md-2"><input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" value="<?php echo $_GET["fullName"]; ?>"></div>
-    <div class="col-md-2"><input type="text" class="form-control" id="name" name="name" placeholder="Shot Name" value="<?php echo $_GET["name"]; ?>"></div>
-    <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="Port" value="<?php echo $_GET["port"]; ?>"></div>
-	<div class="col-md-3"><input type="text" class="form-control" id="blockapiurl" name="blockapiurl" placeholder="URL Lastest Block API" value="<?php echo $_GET["blockapiurl"]; ?>"></div>
+    <div class="col-md-2"><input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" value='<?php echo $_GET['fullName']; ?>'></div>
+    <div class="col-md-2"><input type="text" class="form-control" id="name" name="name" placeholder="Shot Name" value='<?php echo $_GET["name"]; ?'></div>
+    <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="Port" value='<?php echo $_GET["port"]; ?>'></div>
+	<div class="col-md-3"><input type="text" class="form-control" id="blockapiurl" name="blockapiurl" placeholder="URL Lastest Block API" value='<?php echo $_GET["blockapiurl"]; ?>'></div>
     <div class="col-md-2">
 	<a class="btn btn-default" href="#" id="btnAddCoin">Add</a>
 	</div>
