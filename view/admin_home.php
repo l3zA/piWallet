@@ -35,7 +35,7 @@ if (!empty($msg))
 		echo '<td>';
 		echo satoshitize($value->balance);
 		echo '</td>';
-		echo "<td class='lastestBlockAPI' id="$value->name . url">";
+		echo "<td class='lastestBlockAPI'>";
 		echo "<input type='hidden' class='url' value='$value->lastestBlockAPI'/>";
 		echo '</td>';
 		echo '<td class="lastBlock">';
