@@ -31,7 +31,7 @@ if (!empty($msg))
 
 	foreach ($coins as $value) {
 		echo "<tr data-currency='$value->name'>";
-		echo "<td><a href='?a=home&fullName=$value->fullName&name=$value->name&name=$value->name&port=$value->port&blockapiurl=$value->lastestBlockAPI'>$value->name</a></td>";
+		echo "<td><a href='?a=home&fullName=$value->fullName&name=$value->name&name=$value->name&port=$value->port&blockapiurl=$value->lastestBlockAPI&id=$value->id'>$value->name</a></td>";
 		echo '<td>';
 		echo satoshitize($value->balance);
 		echo '</td>';
