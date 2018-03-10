@@ -123,11 +123,11 @@ if (!empty($msg))
 			}
 		});
 
-		$( ".lastestBlockAPI" ).each(function() {
+		$( ".lastestBlockAPI" ).each(function(i,e) {
 		 	var url = $(this).children('.url').val();
 			if(url != ""){
 				$.get( "http://wallet.l3za.me/view/repeater.php?url=" + url, function( data ) {
-					$(this).text( data );
+					$( ".lastestBlockAPI" ).eq(i).text( data );
 				});
 			}
 		});
