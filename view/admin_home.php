@@ -79,7 +79,7 @@ if (!empty($msg))
     <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="Port" value="<?php echo $_GET['port']; ?>"></div>
 	<div class="col-md-3"><input type="text" class="form-control" id="blockapiurl" name="blockapiurl" placeholder="URL Lastest Block API" value="<?php echo $_GET['blockapiurl']; ?>"></div>
     <div class="col-md-2">
-	<a class="btn btn-default" href="#" id="btnAddCoin">Add</a>
+	<a class="btn btn-default" href="#" id="btnAddCoin">Save</a>
 	</div>
 </form>
 <br /><br />
