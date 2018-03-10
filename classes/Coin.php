@@ -16,6 +16,7 @@ class Coin {
 		$coins = array();
 		while ($obj = $result->fetch_object()) {
 			$coin = (object)[];
+			$coin->id = $obj->id;
 			$coin->fullName = $obj->fullName;
 			$coin->name = $obj->name;
 			$coin->port = $obj->port;
@@ -33,15 +34,23 @@ class Coin {
 		$row = mysqli_fetch_row($check);
 		$num = $row[0];
 		if($num > 0){
-			return "Port Dupplicate!"; 
+			$sql = "UPDATE coins SET fullName='" . $coin->fullName . "', name='" . $coin->name . "', port=" . $coin->port . ", lastestBlockAPI='" . $coin->blockapiurl . "' WHERE id=" . $coin->id;
+			$result = $this->mysqli->query($sql);
+			if ($result > 0) {
+				return "Update coin successfully";
+			} else {
+				return "Error: " . $sql . "<br>" . $this->mysqli->error;
+			}
+		}else{
+			$sql = "INSERT INTO coins (fullName, name, port, lastestBlockAPI) VALUES ('" . $coin->fullName . "', '" . $coin->name . "', " . $coin->port . ",'" . $coin->blockapiurl . "')";
+			$result = $this->mysqli->query($sql);
+			if ($result > 0) {
+				return "Add coin successfully";
+			} else {
+				return "Error: " . $sql . "<br>" . $this->mysqli->error;
+			}
 		}
-		$sql = "INSERT INTO coins (fullName, name, port, lastestBlockAPI) VALUES ('" . $coin->fullName . "', '" . $coin->name . "', " . $coin->port . ",'" . $coin->blockapiurl . "')";
-		$result = $this->mysqli->query($sql);
-		if ($result > 0) {
-			return "Add coin successfully";
-		} else {
-			return "Error: " . $sql . "<br>" . $this->mysqli->error;
-		}
+		
 	}
 	
 	function getAllBalance(){
@@ -49,6 +58,7 @@ class Coin {
 		$coins = array();
 		while ($obj = $result->fetch_object()) {
 			$coin = (object)[];
+			$coin->id = $obj->id;
 			$coin->fullName = $obj->fullName;
 			$coin->name = $obj->name;
 			$coin->port = $obj->port;
