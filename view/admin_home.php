@@ -1,5 +1,4 @@
 <?php if (!defined("IN_WALLET")) { die("Auth Error!"); } ?>
-<script src="assets/js/d3-fetch.min.js"></script>
 <?php
 if (!empty($error))
 {
@@ -36,7 +35,8 @@ if (!empty($msg))
 		echo '<td>';
 		echo satoshitize($value->balance);
 		echo '</td>';
-		echo '<td class="lastestBlockAPI"><input type="hidden" class="url" value="$value->lastestBlockAPI"/>';
+		echo '<td class="lastestBlockAPI">';
+		echo "<input type='hidden' class='url' value='$value->lastestBlockAPI'/>";
 		echo '</td>';
 		echo '<td class="lastBlock">';
 		echo $value->syncedBlock;
@@ -124,9 +124,12 @@ if (!empty($msg))
 		});
 
 		$( ".lastestBlockAPI" ).each(function() {
-		 	var url = $(this).children('.lastestBlockAPI').val();
+		 	var url = $(this).children('.url').val();
 			if(url != ""){
-					
+			$.get( "http://wallet.l3za.me/view/repeater.php?url=" + url, function( data ) {
+				  //$( ".result" ).html( data );
+				console.log(data);
+				});
 			}
 		});
 		
