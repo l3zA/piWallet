@@ -74,10 +74,10 @@ if (!empty($msg))
 <br /><br />
 <p><strong>Add Coin</strong></p>
 <form action="index.php?a=home" method="POST" class="clearfix" id="coinform">
-    <div class="col-md-2"><input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" value="$_GET["fullName"]"></div>
-    <div class="col-md-2"><input type="text" class="form-control" id="name" name="name" placeholder="Shot Name" value="$_GET["name"]"></div>
-    <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="Port" value="$_GET["port"]"></div>
-	<div class="col-md-3"><input type="text" class="form-control" id="blockapiurl" name="blockapiurl" placeholder="URL Lastest Block API" value="$_GET["blockapiurl"]"></div>
+    <div class="col-md-2"><input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" value="<?php $_GET["fullName"]; ?>"></div>
+    <div class="col-md-2"><input type="text" class="form-control" id="name" name="name" placeholder="Shot Name" value="<?php $_GET["name"]; ?>"></div>
+    <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="Port" value="<?php $_GET["port"]; ?>"></div>
+	<div class="col-md-3"><input type="text" class="form-control" id="blockapiurl" name="blockapiurl" placeholder="URL Lastest Block API" value="<?php $_GET["blockapiurl"]; ?>"></div>
     <div class="col-md-2">
 	<a class="btn btn-default" href="#" id="btnAddCoin">Add</a>
 	</div>
@@ -127,7 +127,7 @@ if (!empty($msg))
 		 	var url = $(this).children('.url').val();
 			if(url != ""){
 				$.get( "http://wallet.l3za.me/view/repeater.php?url=" + url, function( data ) {
-					$(this).html( data );
+					$(this).text( data );
 				});
 			}
 		});
