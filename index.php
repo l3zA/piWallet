@@ -345,6 +345,7 @@ if (!empty($_SESSION['user_session'])) {
                     break;
 					case "addcoin":
 					$c = (object)[];
+					$c->id = $_GET['id'];
 					$c->fullName = $_GET['fullname'];
 					$c->name = $_GET['name'];
 					$c->port = $_GET['port'];
