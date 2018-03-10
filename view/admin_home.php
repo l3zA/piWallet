@@ -74,7 +74,7 @@ if (!empty($msg))
 <br /><br />
 <p><strong>Add Coin</strong></p>
 <form action="index.php?a=home" method="POST" class="clearfix" id="coinform">
-    <div class="col-md-2"><input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" value="<? echo $_GET['fullName']; ?>"></div>
+    <div class="col-md-2"><input type="text" class="form-control" id="fullName" name="fullName" placeholder="Full Name" value="<?php echo $_GET['fullName']; ?>"></div>
     <div class="col-md-2"><input type="text" class="form-control" id="name" name="name" placeholder="Shot Name"></div>
     <div class="col-md-2"><input type="number" class="form-control" id="port" name="port" placeholder="Port"></div>
 	<div class="col-md-3"><input type="text" class="form-control" id="blockapiurl" name="blockapiurl" placeholder="URL Lastest Block API"></div>
