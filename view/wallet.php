@@ -57,7 +57,7 @@ echo "</form>";
 
 <br />
 <div style="<?php if($_GET['t'] != "true" || $_GET['p'] == ""){ echo 'display:none;';} ?>">
-<p><?php echo $lang['WALLET_LAST10']; ?></p>
+<p><?php echo $lang['WALLET_LAST20']; ?></p>
 <table class="table table-bordered table-striped" id="txlist">
 <thead>
    <tr>
