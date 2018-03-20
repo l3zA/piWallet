@@ -33,4 +33,4 @@ export GPU_SINGLE_ALLOC_PERCENT=100
 #~/miner/ccminer-xevan/ccminer-run -a xevan -o stratum+tcp://s.umine.org:3739 -u ScPpvD2vgRB95b8VF2CXdN3RdxG9HpLBQH.$MY_RIG -p c=XLR
 #~/miner/tpruvot/ccminer/ccminer -a lyra2v2 -o stratum+tcp://pool1.phi-phi-pool.com:4533 -u $MY_ADDRESS.$MY_RIG -p c=BTC
 #~/miner/klaust/ccminer/ccminer -a c11 -o stratum+tcp://pool1.phi-phi-pool.com:3573 -u $MY_ADDRESS.$MY_RIG -p c=BTC
-~/miner/klaust/ccminer/ccminer -o stratum+tcp://eu1.fairmine.pro:4250 -u VDtoPYmCL7TMu9Au3sBbxfsYDxeQxRzKqS.$MY_RIG -p c=VIVO
+~/miner/klaust/ccminer/ccminer -a neoscrypt -o stratum+tcp://eu1.fairmine.pro:4250 -u VDtoPYmCL7TMu9Au3sBbxfsYDxeQxRzKqS.$MY_RIG -p c=VIVO
