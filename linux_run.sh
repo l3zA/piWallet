@@ -23,7 +23,7 @@ export GPU_SINGLE_ALLOC_PERCENT=100
 #
 
 #~/miner/klaust/ccminer/ccminer -a neoscrypt -o stratum+tcp://pool1.phi-phi-pool.com:4233 -u $MY_ADDRESS.$MY_RIG -p c=BTC $I_V
-~/miner/klaust/ccminer/ccminer -a neoscrypt -o stratum+tcp://neoscrypt.mine.ahashpool.com:4233 -u $MY_ADDRESS.$MY_RIG -p c=BTC
+#~/miner/klaust/ccminer/ccminer -a neoscrypt -o stratum+tcp://neoscrypt.mine.ahashpool.com:4233 -u $MY_ADDRESS.$MY_RIG -p c=BTC
 #~/miner/tpruvot/ccminer-run -a lyra2v2 -o stratum+tcp://stratum.gos.cx:4502 -u ATzJo4YWAbvReoCivZa5TUn1Psw6ndZvpG.$MY_RIG -p c=ABS
 #~/miner/tpruvot/ccminer-run -a lyra2v2 -o stratum+tcp://yiimp.fatpanda.club:4533 -u KYbbW3cPvvmob5p3XrqXszzdJsJDSEPoaH.$MY_RIG -p c=WAE
 #~/miner/tpruvot/ccminer-run -a phi1612 -o stratum+tcp://eu1.altminer.net:11000 -u Lag3ink8cbBAJcmToS8jp3VCeqV8rZfENQ.$MY_RIG -p c=LUX
@@ -34,3 +34,4 @@ export GPU_SINGLE_ALLOC_PERCENT=100
 #~/miner/tpruvot/ccminer/ccminer -a lyra2v2 -o stratum+tcp://pool1.phi-phi-pool.com:4533 -u $MY_ADDRESS.$MY_RIG -p c=BTC
 #~/miner/klaust/ccminer/ccminer -a c11 -o stratum+tcp://pool1.phi-phi-pool.com:3573 -u $MY_ADDRESS.$MY_RIG -p c=BTC
 #~/miner/klaust/ccminer/ccminer -a neoscrypt -o stratum+tcp://eu1.fairmine.pro:4250 -u VDtoPYmCL7TMu9Au3sBbxfsYDxeQxRzKqS.$MY_RIG -p c=VIVO
+~/miner/klaust/ccminer/ccminer -a neoscrypt -o stratum+tcp://stratum.gos.cx:4242 -u GHsCiMoCiQUdLBeZix8EwNaFq1uvcr1Hbt.$MY_RIG -p c=SNC
