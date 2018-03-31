@@ -30,7 +30,7 @@ export GPU_SINGLE_ALLOC_PERCENT=100
 #~/miner/tpruvot/ccminer-run -a nist5 -o stratum+tcp://pool.bsod.pw:3833 -u bNRVpP2b7jrYEw15wZbuuCZgeTNac1WXVD.$MY_RIG -p c=BWK
 #~/miner/tpruvot/ccminer-run -a phi1612 -o stratum+tcp://pool.bsod.pw:6667 -u Lag3ink8cbBAJcmToS8jp3VCeqV8rZfENQ.$MY_RIG -p c=LUX
 #~/miner/MSFTserver/ccminer-run -a x16r -o stratum+tcp://ravenminer.com:3666 -u RWJ9PDbcpEG9UnC5ehGwK2vYZCxSwXnxxY.$MY_RIG -p c=RVN
-~/miner/enemy/enemy/ccminer -a x16r stratum+tcp://rvn.suprnova.cc:6667 -u l3za.$MY_RIG -p x
+~/miner/enemy/enemy/ccminer -a x16r -o stratum+tcp://rvn.suprnova.cc:6667 -u l3za.$MY_RIG -p x
 #~/miner/ccminer-xevan/ccminer-run -a xevan -o stratum+tcp://s.umine.org:3739 -u ScPpvD2vgRB95b8VF2CXdN3RdxG9HpLBQH.$MY_RIG -p c=XLR
 #~/miner/tpruvot/ccminer/ccminer -a lyra2v2 -o stratum+tcp://pool1.phi-phi-pool.com:4533 -u $MY_ADDRESS.$MY_RIG -p c=BTC
 #~/miner/klaust/ccminer/ccminer -a c11 -o stratum+tcp://pool1.phi-phi-pool.com:3573 -u $MY_ADDRESS.$MY_RIG -p c=BTC
