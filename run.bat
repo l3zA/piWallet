@@ -17,6 +17,6 @@ call diff.bat
 ::%USERPROFILE%\Downloads\ccminer-x64-2.2.5-rvn-cuda9\ccminer-x64 -a phi1612 -o stratum+tcp://eu2.bsod.pw:6667 -u LPRpXFstdEH13wk6whmGXAK1vUrAgoXGQD.%COMPUTERNAME% -p c=LUX
 ::%USERPROFILE%\Downloads\ccminer-818-cuda91-x64\ccminer -a neoscrypt -o stratum+tcp://stratum.gos.cx:4242 -u GHsCiMoCiQUdLBeZix8EwNaFq1uvcr1Hbt.%COMPUTERNAME% -p c=SNC
 ::%USERPROFILE%\Downloads\ccminer2.3.0-allium\ccminer-x64 -a allium -o stratum+tcp://grlc.suprnova.cc:8600 -u l3za.%COMPUTERNAME% -p x
-%USERPROFILE%\Downloads\suprminer-1.6\ccminer -a x16r -o stratum+tcp://eu1.arcpool.com:1121 -u BNBTy87LskJE4hKUGXEFyvQyF4dW9Z5CcJ.%COMPUTERNAME% -p c=BEPAY%MY_DIFF%
+%USERPROFILE%\Downloads\suprminer-1.6\ccminer -a neoscrypt -o stratum+tcp://eu1.arcpool.com:1121 -u BNBTy87LskJE4hKUGXEFyvQyF4dW9Z5CcJ.%COMPUTERNAME% -p c=BEPAY%MY_DIFF%
 timeout /T 10
 goto loop
