@@ -21,7 +21,10 @@ call diff.bat
 
 ::%USERPROFILE%\Downloads\lux-sp-mod1\ccminer -a phi -o stratum+tcp://pool1.phi-phi-pool.com:8333 -u 3MJH6zFkwxhGYz2H8j59gYpCcnKAUjsJK7.%COMPUTERNAME% -p ID=%COMPUTERNAME%,c=BTC%MY_DIFF%
 
-cd %USERPROFILE%\Downloads\Sniffdogminer-master
-startsniffin_phiphipool_Bitcoin.bat
+::cd %USERPROFILE%\Downloads\Sniffdogminer-master
+::startsniffin_phiphipool_Bitcoin.bat
+
+%USERPROFILE%\Downloads\suprminer-1.6\ccminer -a keccak -o stratum+tcp://asia-mine.smartcash.cc:3256 -u SRSQg6BzRzaQynKBv9y6shVKw9t2Xc7RTg.%COMPUTERNAME% -p x%MY_DIFF%
+
 timeout /T 10
 goto loop
