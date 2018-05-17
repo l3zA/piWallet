@@ -10,7 +10,7 @@ call diff.bat
 ::%USERPROFILE%\Downloads\ccminer-x64-2.2.5-rvn-cuda9\ccminer-x64 -a x16r -o stratum+tcp://ravenminer.com:3666 -u RWJ9PDbcpEG9UnC5ehGwK2vYZCxSwXnxxY.%COMPUTERNAME% -p c=RVN%MY_DIFF%
 ::%USERPROFILE%\Downloads\enemyminer1.03win\ccminer-x64 -a x16r -o stratum+tcp://rvn.suprnova.cc:6667 -u l3za.%COMPUTERNAME% -p x%MY_DIFF%
 ::%USERPROFILE%\Downloads\z-enemy-1.05\z-enemy -a x16r -o stratum+tcp://rvn.suprnova.cc:6667 -u l3za.%COMPUTERNAME% -p x%MY_DIFF%
-%USERPROFILE%\Downloads\suprminer-1.6\ccminer -a x16r -o stratum+tcp://rvn.suprnova.cc:6667 -u l3za.%COMPUTERNAME% -p x%MY_DIFF%
+::%USERPROFILE%\Downloads\suprminer-1.6\ccminer -a x16r -o stratum+tcp://rvn.suprnova.cc:6667 -u l3za.%COMPUTERNAME% -p x%MY_DIFF%
 ::%USERPROFILE%\Downloads\ccminer-818-cuda91-x64\ccminer -a neoscrypt -o stratum+tcp://neoscrypt.mine.ahashpool.com:4233 -u 3MJH6zFkwxhGYz2H8j59gYpCcnKAUjsJK7.%COMPUTERNAME% -p c=BTC
 ::%USERPROFILE%\Downloads\PGNminer2.2.5AddAlgo\ccminer -a x16s -o stratum+tcp://pool1.phi-phi-pool.net:3637 -u PVg5iZzpyEKU4Ts1inkCAXt488CouRCiSM.%COMPUTERNAME% -p c=PGN
 ::%USERPROFILE%\Downloads\ccminer-x64-2.2.5-rvn-cuda9\ccminer-x64 -a hmq1725 -o stratum+tcp://hashfaster.com:3748 -u EhVpG3CYGMcuzVMSzJStnBRSCqxGFta17M.%COMPUTERNAME% -p c=ERA%MY_DIFF%
@@ -26,6 +26,8 @@ call diff.bat
 ::startsniffin_Zergpool_Litecoin
 
 ::%USERPROFILE%\Downloads\suprminer-1.6\ccminer -a keccak -o stratum+tcp://asia-mine.smartcash.cc:3256 -u SRSQg6BzRzaQynKBv9y6shVKw9t2Xc7RTg.%COMPUTERNAME% -p x%MY_DIFF%
+
+%USERPROFILE%\Downloads\ZecMiner0.3.4b\miner --server asia1-zcash.flypool.org --port 3333 --user t1QodnSueARaGMCTPD4V452tWg3UNeKtLdz.%COMPUTERNAME% --pass x %MY_DIFF%
 
 timeout /T 10
 goto loop
